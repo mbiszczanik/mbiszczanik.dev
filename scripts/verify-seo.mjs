@@ -8,16 +8,20 @@ const checks = [];
 const check = (name, fn) => checks.push({ name, fn });
 
 check('post page exists', () => existsSync(POST));
+// The WHATWG URL parser lowercases hostnames, so the `https://DOMAIN` placeholder
+// from astro.config.mjs appears as `https://domain` in built HTML (URLs built via
+// `new URL(...).href`). Once the real (lowercase) domain replaces the placeholder
+// this distinction disappears. Source files keep the uppercase `DOMAIN` placeholder.
 check('post has canonical link', () =>
   read(POST).includes(
-    '<link rel="canonical" href="https://DOMAIN/blog/when-azure-verified-modules-appeared-i-had-to-decide-what-of-my-own-work-to-throw-away/"'
+    '<link rel="canonical" href="https://domain/blog/when-azure-verified-modules-appeared-i-had-to-decide-what-of-my-own-work-to-throw-away/"'
   )
 );
 check('post has meta description', () =>
   read(POST).includes('name="description" content="A repeatable keep / adapt / drop method')
 );
 check('post has og:image', () =>
-  read(POST).includes('property="og:image" content="https://DOMAIN/og-default.png"')
+  read(POST).includes('property="og:image" content="https://domain/og-default.png"')
 );
 check('post has twitter card', () =>
   read(POST).includes('name="twitter:card" content="summary_large_image"')

@@ -33,21 +33,23 @@ const postURL = new URL(Astro.url.pathname, Astro.site).href;
     <Header />
     <main>
       <article>
-        <div class="title">
-          <div class="date">
-            <FormattedDate date={pubDate} />
-            {
-              updatedDate && (
-                <div class="last-updated-on">
-                  Last updated on <FormattedDate date={updatedDate} />
-                </div>
-              )
-            }
+        <div class="prose">
+          <div class="title">
+            <div class="date">
+              <FormattedDate date={pubDate} />
+              {
+                updatedDate && (
+                  <div class="last-updated-on">
+                    Last updated on <FormattedDate date={updatedDate} />
+                  </div>
+                )
+              }
+            </div>
+            <h1>{title}</h1>
+            <hr />
           </div>
-          <h1>{title}</h1>
-          <hr />
+          <slot />
         </div>
-        <slot />
       </article>
     </main>
     <Footer />
