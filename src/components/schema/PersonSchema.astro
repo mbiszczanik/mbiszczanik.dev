@@ -1,0 +1,14 @@
+---
+import { AUTHOR_NAME, GITHUB_URL, LINKEDIN_URL } from '../../consts';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: AUTHOR_NAME,
+  jobTitle: 'Cloud and Platform Consultant',
+  url: Astro.site?.href,
+  sameAs: [GITHUB_URL, LINKEDIN_URL],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
