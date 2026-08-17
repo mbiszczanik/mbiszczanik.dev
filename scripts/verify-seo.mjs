@@ -12,16 +12,17 @@ check('post page exists', () => existsSync(POST));
 // from astro.config.mjs appears as `https://domain` in built HTML (URLs built via
 // `new URL(...).href`). Once the real (lowercase) domain replaces the placeholder
 // this distinction disappears. Source files keep the uppercase `DOMAIN` placeholder.
+const BUILT_SITE = 'https://domain';
 check('post has canonical link', () =>
   read(POST).includes(
-    '<link rel="canonical" href="https://domain/blog/when-azure-verified-modules-appeared-i-had-to-decide-what-of-my-own-work-to-throw-away/"'
+    `<link rel="canonical" href="${BUILT_SITE}/blog/when-azure-verified-modules-appeared-i-had-to-decide-what-of-my-own-work-to-throw-away/"`
   )
 );
 check('post has meta description', () =>
   read(POST).includes('name="description" content="A repeatable keep / adapt / drop method')
 );
 check('post has og:image', () =>
-  read(POST).includes('property="og:image" content="https://domain/og-default.png"')
+  read(POST).includes(`property="og:image" content="${BUILT_SITE}/og-default.png"`)
 );
 check('post has twitter card', () =>
   read(POST).includes('name="twitter:card" content="summary_large_image"')
