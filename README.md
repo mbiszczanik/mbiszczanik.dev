@@ -40,6 +40,11 @@ to this repository) runs:
 Pushing to `main` deploys to production. Pull request branches get a
 preview deployment, linked from the PR.
 
+The `workers.dev` address is disabled for production (`workers_dev: false`)
+and used only for preview URLs (`preview_urls: true`). Both settings are
+applied by `wrangler deploy` from `main`, so a change to them reaches PR
+previews only after it is merged and deployed.
+
 ### Custom domain
 
 `mbiszczanik.dev` is attached through `routes` in `wrangler.jsonc`
