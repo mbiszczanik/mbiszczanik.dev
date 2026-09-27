@@ -101,8 +101,6 @@ When a credible standard lands next to your work, ask one question of every piec
 4. Try to refute every keep before you trust it.
 5. Write down why, so the next re-check is one pass, not a migration.
 
-Has a standard ever made part of your own work redundant? I would like to hear what you kept, and how you proved it was still needed.
-
 ---
 
-I'm Marcin Biszczanik, a Cloud and Platform Consultant (AZ-305) writing about the decisions behind Azure platform work. The modules from this article live in [`azure-bicep-modules`](https://github.com/mbiszczanik/azure-bicep-modules), and the decision records in [`azure-architecture-decisions`](https://github.com/mbiszczanik/azure-architecture-decisions). You can reach me on [LinkedIn](https://www.linkedin.com/in/marcin-biszczanik/).
+I'm Marcin Biszczanik, a Cloud and Platform Consultant (AZ-305) writing about the decisions behind Azure platform work. The modules from this article live in [`azure-bicep-modules`](https://github.com/mbiszczanik/azure-bicep-modules), and the decision records in [`azure-architecture-decisions`](https://github.com/mbiszczanik/azure-architecture-decisions). If a standard has made part of your own work redundant, tell me on [LinkedIn](https://www.linkedin.com/in/marcin-biszczanik/) what you kept, and how you proved it was still needed.
