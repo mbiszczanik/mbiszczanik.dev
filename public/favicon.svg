@@ -1,13 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
 	<!-- Brand "Druk": sky-to-paper page with an accent dash over two lines of text. -->
+	<style>
+		.top { stop-color: #dde6f2; }
+		.base { stop-color: #f2efe9; }
+		.accent { fill: #1d4ed8; }
+		.ink { fill: #14130f; }
+		@media (prefers-color-scheme: dark) {
+			.top { stop-color: #0d1426; }
+			.base { stop-color: #0e0e0f; }
+			.accent { fill: #60a5fa; }
+			.ink { fill: #ffffff; }
+		}
+	</style>
 	<defs>
 		<linearGradient id="page" x1="0" y1="0" x2="0" y2="1">
-			<stop offset="0" stop-color="#dde6f2" />
-			<stop offset="1" stop-color="#f2efe9" />
+			<stop offset="0" class="top" />
+			<stop offset="1" class="base" />
 		</linearGradient>
 	</defs>
 	<rect width="32" height="32" fill="url(#page)" />
-	<rect x="6" y="8" width="10" height="3" fill="#1d4ed8" />
-	<rect x="6" y="15" width="20" height="3" fill="#14130f" />
-	<rect x="6" y="21" width="14" height="3" fill="#14130f" />
+	<rect x="6" y="8" width="10" height="3" class="accent" />
+	<rect x="6" y="15" width="20" height="3" class="ink" />
+	<rect x="6" y="21" width="14" height="3" class="ink" />
 </svg>
