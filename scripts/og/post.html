@@ -1,5 +1,6 @@
 <!doctype html>
-<!-- Per-post card in brand "Druk". generate-og-image.mjs fills {{size}}, {{eyebrow}} and {{title}},
+<!-- Per-post card in brand "Druk". generate-og-image.mjs fills the size, eyebrow, title and
+     art placeholders (art: scripts/og/art/<slug>.svg, optional, shown right of the title),
      then screenshots it at 1200x630 (og) and 1000x420 (dev.to cover). -->
 <html lang="en"><head><meta charset="utf-8"><style>
 @font-face{font-family:Archivo;font-weight:100 900;src:url(../../src/assets/fonts/Archivo-var-latin.woff2) format("woff2")}
@@ -9,6 +10,7 @@ body{background:linear-gradient(180deg,#dde6f2 0,#f2efe9 100%);font-family:Archi
 .eb{position:absolute;font-family:"JetBrains Mono",monospace;letter-spacing:.13em;text-transform:uppercase;color:#656056;white-space:nowrap}
 .eb::before{content:"";position:absolute;left:0;height:2px;background:#1d4ed8}
 h1{position:absolute;margin:0;font-weight:400;letter-spacing:-.028em;line-height:1.08}
+.art{position:absolute}.art svg{display:block;width:100%;height:auto}
 .sig{position:absolute;border-top:1px solid #d3ccbe;display:flex;justify-content:space-between;align-items:baseline}
 .sig b{font-weight:600}.sig span{color:#4a4635}.sig i{font-style:normal;font-family:"JetBrains Mono",monospace;color:#656056}
 
@@ -16,6 +18,8 @@ body.og{width:1200px;height:630px}
 .og .eb{left:72px;top:72px;font-size:20px;padding-left:52px}
 .og .eb::before{top:12px;width:36px}
 .og h1{left:72px;right:72px;top:124px;font-size:64px}
+.og .art{right:72px;top:76px;width:500px}
+.og.has-art h1{right:620px}
 .og .sig{left:72px;right:72px;bottom:56px;padding-top:16px;font-size:24px}
 .og .sig i{font-size:20px}
 
@@ -23,17 +27,24 @@ body.devto{width:1000px;height:420px}
 .devto .eb{left:56px;top:48px;font-size:17px;padding-left:44px}
 .devto .eb::before{top:10px;width:30px}
 .devto h1{left:56px;right:56px;top:92px;font-size:50px}
+.devto .art{right:56px;top:50px;width:440px}
+.devto.has-art h1{right:528px}
 .devto .sig{left:56px;right:56px;bottom:40px;padding-top:12px;font-size:20px}
 .devto .sig i{font-size:17px}
 </style></head><body class="{{size}}">
 <div class="eb">{{eyebrow}}</div>
 <h1>{{title}}</h1>
+<div class="art">{{art}}</div>
 <div class="sig"><div><b>Marcin Biszczanik</b> <span>· Cloud and Platform Consultant</span></div><i>mbiszczanik.dev</i></div>
 <script>
-// Once the brand fonts are in, shrink the title until it clears the signature rule with a margin.
+// With art, the title shares the card with it. Once the brand fonts are in, shrink the title
+// (and the art, if needed) until both clear the signature rule with a margin.
 document.fonts.ready.then(() => {
   const h1 = document.querySelector('h1');
+  const art = document.querySelector('.art');
+  if (art.childElementCount) document.body.classList.add('has-art');
   const limit = document.querySelector('.sig').offsetTop - 32;
+  while (art.childElementCount && art.offsetTop + art.offsetHeight > limit) art.style.width = `${art.offsetWidth - 4}px`;
   let size = parseFloat(getComputedStyle(h1).fontSize);
   while (h1.offsetTop + h1.offsetHeight > limit && size > 24) h1.style.fontSize = `${--size}px`;
 });
