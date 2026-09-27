@@ -13,7 +13,16 @@ focus: the decisions behind Azure platform work.
 | `npm run build` | Production build to `./dist/` |
 | `npm run preview` | Preview the build locally |
 | `npm run verify:seo` | Check SEO essentials in the built output |
-| `npm run og` | Regenerate `public/og-default.png` |
+| `npm run og` | Regenerate `public/og-default.png` and `public/favicon.ico` (needs Chrome or Edge; override with `CHROME_PATH`) |
+
+## Brand
+
+The site uses brand "Druk" (light mode), the same system as SkyCraft:
+Akademia Chmury. Tokens live at the top of `src/styles/global.css`; fonts
+are Archivo and JetBrains Mono variable woff2 files in `src/assets/fonts`
+(SIL Open Font License), wired up in `astro.config.mjs`. The rules: no
+box-shadow, text-shadow, border-radius or italics, and no font weight above
+600. The Open Graph card template is `scripts/og/og.html`.
 
 ## Deployment: Cloudflare Workers
 

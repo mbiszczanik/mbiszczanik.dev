@@ -2,7 +2,7 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
+import PostList from '../../components/PostList.astro';
 import { SITE_TITLE } from '../../consts';
 import { getCollection } from 'astro:content';
 
@@ -21,35 +21,10 @@ const posts = (await getCollection('blog')).sort(
   <body>
     <Header />
     <main>
+      <div class="eyebrow">All articles</div>
       <h1>Blog</h1>
-      <ul class="post-list">
-        {
-          posts.map((post) => (
-            <li>
-              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-              <p>{post.data.description}</p>
-              <span class="date">
-                <FormattedDate date={post.data.pubDate} />
-              </span>
-            </li>
-          ))
-        }
-      </ul>
+      <PostList posts={posts} showDescription />
     </main>
     <Footer />
   </body>
 </html>
-
-<style>
-  .post-list {
-    list-style: none;
-    padding: 0;
-  }
-  .post-list li {
-    margin-bottom: 1.5em;
-  }
-  .post-list .date {
-    font-size: 0.85em;
-    opacity: 0.7;
-  }
-</style>

@@ -37,8 +37,11 @@ const imageURL = new URL(image, Astro.site).href;
 />
 <meta name="generator" content={Astro.generator} />
 
-<!-- KEEP: template font preload -->
-<Font cssVariable="--font-atkinson" preload />
+<meta name="theme-color" content="#dde6f2" />
+
+<!-- Brand fonts: preload the text face only, the mono face is used for small labels. -->
+<Font cssVariable="--font-archivo" preload />
+<Font cssVariable="--font-jetbrains-mono" />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
