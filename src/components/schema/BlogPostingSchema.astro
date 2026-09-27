@@ -22,6 +22,7 @@ const schema = {
   },
   datePublished: pubDate.toISOString(),
   ...(updatedDate ? { dateModified: updatedDate.toISOString() } : {}),
+  image: new URL('/og-default.png', Astro.site).href,
   mainEntityOfPage: url,
 };
 ---
