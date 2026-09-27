@@ -16,8 +16,8 @@ check('post has canonical link', () =>
 check('post has meta description', () =>
   read(POST).includes('name="description" content="A repeatable keep / adapt / drop method')
 );
-check('post has og:image', () =>
-  read(POST).includes(`property="og:image" content="${BUILT_SITE}/og-default.png"`)
+check('post has its own og:image', () =>
+  read(POST).includes(`property="og:image" content="${BUILT_SITE}/og/keep-adapt-drop-avm.png"`)
 );
 check('post has twitter card', () =>
   read(POST).includes('name="twitter:card" content="summary_large_image"')
@@ -29,7 +29,7 @@ check('post has BlogPosting JSON-LD', () =>
   read(POST).includes('"@type":"BlogPosting"')
 );
 check('post JSON-LD has image', () =>
-  read(POST).includes(`"image":"${BUILT_SITE}/og-default.png"`)
+  read(POST).includes(`"image":"${BUILT_SITE}/og/keep-adapt-drop-avm.png"`)
 );
 check('post JSON-LD has author name', () =>
   read(POST).includes('"author":{"@type":"Person","name":"Marcin Biszczanik"')
@@ -59,6 +59,9 @@ check('rss exists and lists the post', () =>
   existsSync('dist/rss.xml') && read('dist/rss.xml').includes('When Azure Verified Modules appeared')
 );
 check('og image file exists', () => existsSync('dist/og-default.png'));
+check('post og and dev.to cover files exist', () =>
+  existsSync('dist/og/keep-adapt-drop-avm.png') && existsSync('dist/og/keep-adapt-drop-avm-devto.png')
+);
 check('analytics placeholder in BaseHead source', () =>
   read('src/components/BaseHead.astro').includes('TODO(author)')
 );
