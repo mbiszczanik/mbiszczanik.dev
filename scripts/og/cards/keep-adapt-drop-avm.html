@@ -1,0 +1,75 @@
+<!doctype html>
+<!-- Custom card for keep-adapt-drop-avm in the brand "Druk" light palette: a short hook on the left
+     (dev.to prints the full title under the cover) and the method's verdict log on the right.
+     generate-og-image.mjs sets the size class and screenshots it at 1200x630 and 1000x420. -->
+<html lang="en"><head><meta charset="utf-8"><style>
+@font-face{font-family:Archivo;font-weight:100 900;src:url(../../../src/assets/fonts/Archivo-var-latin.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:100 800;src:url(../../../src/assets/fonts/JetBrainsMono-var-latin.woff2) format("woff2")}
+html,body{margin:0}
+body{background:linear-gradient(180deg,#dde6f2 0,#f2efe9 100%);font-family:Archivo,sans-serif;color:#14130f;position:relative;overflow:hidden;box-sizing:border-box;display:flex;align-items:center}
+.mono{font-family:"JetBrains Mono",monospace}
+.eb{font-family:"JetBrains Mono",monospace;letter-spacing:.13em;text-transform:uppercase;color:#656056;position:relative}
+.eb::before{content:"";position:absolute;left:0;height:2px;background:#1d4ed8}
+h1{margin:0;font-weight:400;letter-spacing:-.03em;line-height:1.04}
+h1 em{font-style:normal;color:#1d4ed8}
+.lede{color:#4a4635;line-height:1.35;margin:0}
+.lede b{font-weight:400;color:#14130f}
+.log{border:1px solid #d3ccbe;background:#f2efe9;box-sizing:border-box}
+.log h2{margin:0;font-family:"JetBrains Mono",monospace;font-weight:400;letter-spacing:.13em;text-transform:uppercase;color:#1d4ed8}
+.log .q{color:#4a4635;margin:0}
+.log .q b{font-weight:400;color:#14130f}
+.rows{font-family:"JetBrains Mono",monospace}
+.row{display:flex;justify-content:space-between;align-items:center}
+.row .v{letter-spacing:.08em;text-transform:uppercase}
+.drop .m{color:#b3aa98;text-decoration:line-through;text-decoration-color:#b3aa98}
+.drop .v{color:#b3aa98}
+.adapt .m{color:#14130f}
+.adapt .v{color:#656056}
+.keep .m{color:#14130f}
+.keep .v{color:#fff;background:#1d4ed8}
+.keep{border-top:1px solid #d3ccbe}
+
+/* dev.to cover, 1000x420 */
+body.devto{width:1000px;height:420px;padding:0 56px;gap:40px}
+.devto .left{flex:1}
+.devto .eb{font-size:14px;padding-left:40px;margin-bottom:22px}.devto .eb::before{top:8px;width:28px}
+.devto h1{font-size:50px}
+.devto .lede{font-size:18px;margin-top:18px}
+.devto .log{width:400px;padding:18px 20px}
+.devto .log h2{font-size:12px}
+.devto .log .q{font-size:15px;margin:6px 0 12px}
+.devto .rows{font-size:14px}
+.devto .row{padding:4px 0}.devto .row .v{font-size:11px;padding:2px 6px}
+.devto .keep{margin-top:6px;padding-top:9px}
+
+/* social card, 1200x630 */
+body.og{width:1200px;height:630px;padding:0 72px;gap:56px}
+.og .left{flex:1}
+.og .eb{font-size:17px;padding-left:48px;margin-bottom:28px}.og .eb::before{top:10px;width:34px}
+.og h1{font-size:60px}
+.og .lede{font-size:23px;margin-top:24px}
+.og .log{width:470px;padding:24px 26px}
+.og .log h2{font-size:14px}
+.og .log .q{font-size:18px;margin:8px 0 16px}
+.og .rows{font-size:17px}
+.og .row{padding:6px 0}.og .row .v{font-size:13px;padding:2px 7px}
+.og .keep{margin-top:8px;padding-top:12px}
+</style></head><body class="{{size}}">
+<div class="left">
+  <div class="eb">IaC · DevOps</div>
+  <h1>AVM shipped.<br>Most of my modules<br>had to <em>go</em>.</h1>
+  <p class="lede">The hard part: <b>the ones that had to stay.</b></p>
+</div>
+<div class="log">
+  <h2>The verdict</h2>
+  <p class="q">does AVM do this, <b>at least as well?</b></p>
+  <div class="rows">
+    <div class="row drop"><span class="m">virtual-network</span><span class="v">drop</span></div>
+    <div class="row drop"><span class="m">network-security-group</span><span class="v">drop</span></div>
+    <div class="row drop"><span class="m">virtual-machine</span><span class="v">drop</span></div>
+    <div class="row adapt"><span class="m">monitoring-baseline</span><span class="v">adapt</span></div>
+    <div class="row adapt"><span class="m">key-vault</span><span class="v">adapt</span></div>
+    <div class="row keep"><span class="m">secure-hub-spoke-avnm</span><span class="v">keep</span></div>
+  </div>
+</div>
+</body></html>
