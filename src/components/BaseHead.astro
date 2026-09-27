@@ -40,6 +40,20 @@ const imageURL = new URL(image, Astro.site).href;
 <meta name="theme-color" content="#dde6f2" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#0d1426" media="(prefers-color-scheme: dark)" />
 
+<!-- Colour mode chosen with the header toggle; applied before first paint to avoid a flash. -->
+<script is:inline>
+  (() => {
+    let theme = null;
+    try {
+      theme = localStorage.getItem('theme');
+    } catch {}
+    if (theme !== 'light' && theme !== 'dark') return;
+    document.documentElement.dataset.theme = theme;
+    const color = theme === 'dark' ? '#0d1426' : '#dde6f2';
+    document.querySelectorAll('meta[name="theme-color"]').forEach((m) => (m.content = color));
+  })();
+</script>
+
 <!-- Brand fonts: preload the text face only, the mono face is used for small labels. -->
 <Font cssVariable="--font-archivo" preload />
 <Font cssVariable="--font-jetbrains-mono" />

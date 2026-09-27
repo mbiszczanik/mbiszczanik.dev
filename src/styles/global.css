@@ -21,9 +21,14 @@
 	--column: 760px;
 }
 
-/* Screen only: print always uses the light palette on white paper. */
+/*
+  Dark palette, screen only (print always uses the light palette on white paper).
+  The mode comes from the system unless the header toggle stored a choice, which
+  sets data-theme on <html>. The two blocks below must stay identical.
+ */
 @media screen and (prefers-color-scheme: dark) {
-	:root {
+	:root:not([data-theme='light']) {
+		color-scheme: dark;
 		--ink: #ffffff;
 		--lede: #a6a6ab;
 		--soft: #8e8e93;
@@ -33,10 +38,37 @@
 		--sky: #0d1426;
 		--accent: #60a5fa;
 	}
+}
 
-	/* Shiki dual themes: switch token colours to the dark theme. */
-	.astro-code,
-	.astro-code span {
+@media screen {
+	:root[data-theme='dark'] {
+		color-scheme: dark;
+		--ink: #ffffff;
+		--lede: #a6a6ab;
+		--soft: #8e8e93;
+		--meta: #85858c;
+		--rule: rgba(255, 255, 255, 0.14);
+		--paper: #0e0e0f;
+		--sky: #0d1426;
+		--accent: #60a5fa;
+	}
+}
+
+:root[data-theme='light'] {
+	color-scheme: light;
+}
+
+/* Shiki dual themes: token colours follow the same two conditions. */
+@media screen and (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) .astro-code,
+	:root:not([data-theme='light']) .astro-code span {
+		color: var(--shiki-dark) !important;
+	}
+}
+
+@media screen {
+	:root[data-theme='dark'] .astro-code,
+	:root[data-theme='dark'] .astro-code span {
 		color: var(--shiki-dark) !important;
 	}
 }

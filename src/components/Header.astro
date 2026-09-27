@@ -9,9 +9,38 @@ import { SITE_TITLE } from '../consts';
 		<div class="links">
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
+			<button type="button" class="theme-toggle" hidden>Dark</button>
 		</div>
 	</nav>
 </header>
+<script is:inline>
+	// Switches between light and dark and remembers the choice. Hidden without JS,
+	// where the page simply follows the system setting.
+	(() => {
+		const button = document.querySelector('.theme-toggle');
+		const root = document.documentElement;
+		const system = window.matchMedia('(prefers-color-scheme: dark)');
+		const current = () => root.dataset.theme ?? (system.matches ? 'dark' : 'light');
+		const render = () => {
+			const next = current() === 'dark' ? 'light' : 'dark';
+			button.textContent = next === 'dark' ? 'Dark' : 'Light';
+			button.setAttribute('aria-label', `Switch to ${next} mode`);
+		};
+		button.addEventListener('click', () => {
+			const theme = current() === 'dark' ? 'light' : 'dark';
+			root.dataset.theme = theme;
+			try {
+				localStorage.setItem('theme', theme);
+			} catch {}
+			const color = theme === 'dark' ? '#0d1426' : '#dde6f2';
+			document.querySelectorAll('meta[name="theme-color"]').forEach((m) => (m.content = color));
+			render();
+		});
+		system.addEventListener('change', render);
+		render();
+		button.hidden = false;
+	})();
+</script>
 <style>
 	header {
 		padding: 0 24px;
@@ -35,7 +64,27 @@ import { SITE_TITLE } from '../consts';
 	}
 	.links {
 		display: flex;
+		align-items: baseline;
 		gap: 20px;
+	}
+	.theme-toggle {
+		font: inherit;
+		font-family: var(--mono);
+		font-size: 13px;
+		letter-spacing: 0.13em;
+		text-transform: uppercase;
+		color: var(--meta);
+		background: none;
+		border: 0;
+		border-left: 1px solid var(--rule);
+		padding: 0 0 0 20px;
+		cursor: pointer;
+	}
+	.theme-toggle:hover {
+		color: var(--accent);
+	}
+	.theme-toggle[hidden] {
+		display: none;
 	}
 	@media (max-width: 720px) {
 		header {
