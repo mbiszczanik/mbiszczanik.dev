@@ -1,7 +1,6 @@
 import { readFileSync, existsSync } from 'node:fs';
 
-const POST =
-  'dist/blog/when-azure-verified-modules-appeared-i-had-to-decide-what-of-my-own-work-to-throw-away/index.html';
+const POST = 'dist/blog/keep-adapt-drop-avm/index.html';
 
 const read = (p) => readFileSync(p, 'utf8');
 const checks = [];
@@ -11,7 +10,7 @@ check('post page exists', () => existsSync(POST));
 const BUILT_SITE = 'https://mbiszczanik.dev';
 check('post has canonical link', () =>
   read(POST).includes(
-    `<link rel="canonical" href="${BUILT_SITE}/blog/when-azure-verified-modules-appeared-i-had-to-decide-what-of-my-own-work-to-throw-away/"`
+    `<link rel="canonical" href="${BUILT_SITE}/blog/keep-adapt-drop-avm/"`
   )
 );
 check('post has meta description', () =>
@@ -28,6 +27,9 @@ check('post has og:type article', () =>
 );
 check('post has BlogPosting JSON-LD', () =>
   read(POST).includes('"@type":"BlogPosting"')
+);
+check('post JSON-LD has image', () =>
+  read(POST).includes(`"image":"${BUILT_SITE}/og-default.png"`)
 );
 check('post JSON-LD has author name', () =>
   read(POST).includes('"author":{"@type":"Person","name":"Marcin Biszczanik"')

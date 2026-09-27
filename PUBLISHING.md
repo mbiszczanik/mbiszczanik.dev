@@ -20,4 +20,4 @@ URLs.
 
 | Post | Canonical URL |
 | --- | --- |
-| When Azure Verified Modules appeared, I had to decide what of my own work to throw away | `https://mbiszczanik.dev/blog/when-azure-verified-modules-appeared-i-had-to-decide-what-of-my-own-work-to-throw-away/` |
+| When Azure Verified Modules appeared, I had to decide what of my own work to throw away | `https://mbiszczanik.dev/blog/keep-adapt-drop-avm/` |
