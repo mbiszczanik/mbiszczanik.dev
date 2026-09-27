@@ -11,6 +11,10 @@
 	"routes": [
 		{ "pattern": "mbiszczanik.dev", "custom_domain": true }
 	],
+	// Production lives only on the custom domain; workers.dev serves PR previews only
+	// (<preview-name>-mbiszczanik-dev.<subdomain>.workers.dev). Applied by `wrangler deploy` on main.
+	"workers_dev": false,
+	"preview_urls": true,
 	// Required by `wrangler preview`, which Workers Builds runs for non-production branches.
 	"previews": {}
 }
