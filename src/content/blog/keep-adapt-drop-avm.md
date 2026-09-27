@@ -91,6 +91,16 @@ In Step 5, every verdict was written down with its reason and the dated baseline
 
 What the method prevented was two errors in opposite directions: the mechanical porting of resource modules AVM had made redundant, and the premature dropping of the connectivity pattern that was the actual differentiator. Neither would have been visible without inventory-by-reality, a verified baseline, and a pressure-tested keep.
 
+## The short version
+
+When a credible standard lands next to your work, ask one question of every piece: **does the baseline do this, at least as well?**
+
+1. Inventory by reality, and check you actually authored it.
+2. Verify the baseline today, from primary sources, with the date.
+3. Drop what it does as well, adapt what needs your opinion on top, keep what it does not do.
+4. Try to refute every keep before you trust it.
+5. Write down why, so the next re-check is one pass, not a migration.
+
 ---
 
-**About the author.** I am Marcin Biszczanik, a Cloud and Platform Consultant working in Azure, Bicep, and infrastructure as code, certified as an Azure Solutions Architect Expert (AZ-305). I write about the decisions behind Azure platform work, not just the implementation. You can find my architecture decision records on [GitHub](https://github.com/mbiszczanik) and reach me on [LinkedIn](https://www.linkedin.com/in/marcin-biszczanik/).
+I'm Marcin Biszczanik, a Cloud and Platform Consultant (AZ-305) writing about the decisions behind Azure platform work. The modules from this article live in [`azure-bicep-modules`](https://github.com/mbiszczanik/azure-bicep-modules), and the decision records in [`azure-architecture-decisions`](https://github.com/mbiszczanik/azure-architecture-decisions). If a standard has made part of your own work redundant, tell me on [LinkedIn](https://www.linkedin.com/in/marcin-biszczanik/) what you kept, and how you proved it was still needed.
