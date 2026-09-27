@@ -8,7 +8,7 @@ URLs.
 
 1. Run `npm run og` and commit the new images. It renders the post's
    social card (`public/og/<slug>.png`, 1200x630) and its dev.to cover
-   (`public/og/<slug>-devto.png`, 1000x420) from the title and first three
+   (`public/og/<slug>-devto.png`, 1000x420) from the title and first two
    tags. Without them the post falls back to the site card.
 2. Publish the post on the blog first. Merge to `main`; Cloudflare Workers
    Builds deploys automatically.
