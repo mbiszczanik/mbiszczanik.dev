@@ -1,6 +1,6 @@
 export const SITE_TITLE = 'Marcin Biszczanik';
 export const SITE_DESCRIPTION =
-  'Cloud and Platform Consultant. Notes on the decisions behind Azure platform work.';
+  'Cloud and Platform Consultant. Notes on the Azure decisions that are hard to reverse: landing zones, identity, governance and infrastructure as code.';
 export const AUTHOR_NAME = 'Marcin Biszczanik';
 export const AUTHOR_JOB_TITLE = 'Cloud and Platform Consultant';
 // Brand motto, English version (the Polish one is "Złożone systemy. Ludzki język.").
