@@ -1,8 +1,8 @@
 # mbiszczanik.dev
 
 Personal technical blog of Marcin Biszczanik. Astro static site, deployed
-on Cloudflare Pages. Content focus: the decisions behind Azure platform
-work.
+as a Cloudflare Worker (static assets) at https://mbiszczanik.dev. Content
+focus: the decisions behind Azure platform work.
 
 ## Development
 
@@ -15,33 +15,28 @@ work.
 | `npm run verify:seo` | Check SEO essentials in the built output |
 | `npm run og` | Regenerate `public/og-default.png` |
 
-## Deployment: Cloudflare Pages
+## Deployment: Cloudflare Workers
 
-Build configuration:
+The site deploys as the `mbiszczanik-dev` Worker, serving `dist` as static
+assets. Worker settings live in `wrangler.jsonc`; Workers Builds (connected
+to this repository) runs:
 
 | Setting | Value |
 | --- | --- |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
+| Deploy command (`main`) | `npx wrangler deploy` |
+| Deploy command (other branches) | `npx wrangler preview` |
 | Node version | 22 (from `.nvmrc`) |
 
-### One-time setup (manual, requires the Cloudflare account)
+Pushing to `main` deploys to production. Pull request branches get a
+preview deployment, linked from the PR.
 
-1. Log in to the Cloudflare dashboard and open Workers and Pages.
-2. Create a new Pages project and connect it to the
-   `mbiszczanik/mbiszczanik.dev` GitHub repository.
-3. Set the build command to `npm run build` and the output directory to
-   `dist`. Cloudflare reads the Node version from `.nvmrc`.
-4. Save and deploy. The site is now live on `<project>.pages.dev`.
+### Custom domain
 
-### Custom domain (manual)
-
-1. Buy the domain (suggested: `mbiszczanik.dev`).
-2. In the Pages project, open Custom domains and add the domain.
-3. If the domain's DNS is hosted on Cloudflare, the dashboard adds the
-   required CNAME record for you. Otherwise create a CNAME record pointing
-   the domain to `<project>.pages.dev`.
-4. Wait for the certificate to be issued; HTTPS is automatic.
+`mbiszczanik.dev` is attached through `routes` in `wrangler.jsonc`
+(`custom_domain: true`). The zone is on Cloudflare, so the deploy creates
+the DNS record and certificate. The apex must not have another A/AAAA/CNAME
+record, or the deploy fails.
 
 ### Web Analytics (manual)
 
@@ -52,18 +47,12 @@ Build configuration:
    replace `YOUR_CF_BEACON_TOKEN` with the token, and uncomment the
    script tag.
 
-### DOMAIN placeholder substitution
+### Changing the domain
 
-After the domain is connected, replace the `DOMAIN` placeholder with the
-real domain in these files:
-
-| File | What to change |
-| --- | --- |
-| `astro.config.mjs` | `site: 'https://DOMAIN'` |
-| `public/robots.txt` | `Sitemap: https://DOMAIN/sitemap-index.xml` |
-| `PUBLISHING.md` | Canonical URL table |
-| `scripts/generate-og-image.mjs` | Domain text in the image; run `npm run og` again if it differs from `mbiszczanik.dev` |
-| `scripts/verify-seo.mjs` | `BUILT_SITE` constant (use the lowercase real domain) |
+The domain appears in `wrangler.jsonc` (`routes`), `astro.config.mjs`
+(`site`), `public/robots.txt`, `scripts/verify-seo.mjs` (`BUILT_SITE`),
+`scripts/generate-og-image.mjs` (run `npm run og` afterwards) and the
+canonical URL table in `PUBLISHING.md`.
 
 Also review `src/pages/privacy.md` before go-live.
 
