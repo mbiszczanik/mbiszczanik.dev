@@ -1,0 +1,12 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	// Worker names allow only lowercase letters, digits and dashes (no dots).
+	"name": "mbiszczanik-dev",
+	"compatibility_date": "2026-09-27",
+	// Static site: serve the Astro build output as Workers static assets, no Worker script.
+	"assets": {
+		"directory": "./dist"
+	},
+	// Required by `wrangler preview`, which Workers Builds runs for non-production branches.
+	"previews": {}
+}
