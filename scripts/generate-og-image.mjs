@@ -2,7 +2,7 @@
 // - og-default.png (1200x630): scripts/og/og.html screenshotted by headless Chrome or Edge,
 //   so the card uses the real Archivo and JetBrains Mono fonts. Override the browser with CHROME_PATH.
 // - og/<slug>.png (1200x630) and og/<slug>-devto.png (1000x420, the dev.to cover ratio) for every
-//   post in src/content/blog, from scripts/og/post.html filled with the post's title and first two tags.
+//   post in src/content/blog, from scripts/og/post.html filled with the post's title and ogEyebrow (default: first two tags).
 // - favicon.ico (32x32 PNG): public/favicon.svg rasterised with resvg (no text, so no fonts needed).
 import { Resvg } from '@resvg/resvg-js';
 import { spawnSync } from 'node:child_process';
@@ -63,7 +63,9 @@ for (const file of readdirSync(BLOG).filter((f) => /\.mdx?$/.test(f))) {
     console.error(`No title in ${file}; skipped.`);
     continue;
   }
-  const eyebrow = tags.slice(0, 2).map((t) => t.replace(/-/g, ' ')).join(' · ');
+  const eyebrow =
+    source.match(/^ogEyebrow:\s*"(.*)"\s*$/m)?.[1] ??
+    tags.slice(0, 2).map((t) => t.replace(/-/g, ' ')).join(' · ');
   for (const [size, suffix, width, height] of [
     ['og', '', 1200, 630],
     ['devto', '-devto', 1000, 420],

@@ -3,6 +3,7 @@ title: "When Azure Verified Modules appeared, I had to decide what of my own wor
 description: "A repeatable keep / adapt / drop method for judging your existing work against an authoritative baseline like Azure Verified Modules, with a real migration as the worked example."
 author: "Marcin Biszczanik"
 pubDate: "2026-09-27"
+ogEyebrow: "IaC · DevOps"
 tags: ["azure", "bicep", "azure-verified-modules", "iac", "architecture"]
 ---
 
