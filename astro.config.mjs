@@ -17,8 +17,8 @@ export default defineConfig({
 	site: 'https://mbiszczanik.dev',
 	integrations: [mdx(), sitemap()],
 	markdown: {
-		// Light theme to match the paper background; the block background is removed in global.css.
-		shikiConfig: { theme: 'github-light' },
+		// Dual themes follow the colour scheme (switched in global.css); the block background is removed there.
+		shikiConfig: { themes: { light: 'github-light', dark: 'github-dark' } },
 	},
 	// Brand "Druk" typography: Archivo for text, JetBrains Mono for labels and code (SIL OFL).
 	fonts: [

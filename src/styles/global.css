@@ -1,10 +1,13 @@
 /*
-  Brand "Druk" v2.2, light mode: the same system as SkyCraft: Akademia Chmury
+  Brand "Druk" v2.2: the same system as SkyCraft: Akademia Chmury
   (skycraft-akademia-internal/themes/koncepty.src.css).
   Rules: no box-shadow, text-shadow, border-radius or italics; no font weight above 600.
+  The mode is a variable, not a selector: only the token block below knows about dark
+  mode, every rule reads tokens. Values follow the brand's .stage--dark mapping.
  */
 
 :root {
+	color-scheme: light dark;
 	--ink: #14130f;
 	--lede: #4a4635;
 	--soft: #5d584e;
@@ -16,6 +19,26 @@
 	--sans: var(--font-archivo), system-ui, -apple-system, sans-serif;
 	--mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
 	--column: 760px;
+}
+
+/* Screen only: print always uses the light palette on white paper. */
+@media screen and (prefers-color-scheme: dark) {
+	:root {
+		--ink: #ffffff;
+		--lede: #a6a6ab;
+		--soft: #8e8e93;
+		--meta: #85858c;
+		--rule: rgba(255, 255, 255, 0.14);
+		--paper: #0e0e0f;
+		--sky: #0d1426;
+		--accent: #60a5fa;
+	}
+
+	/* Shiki dual themes: switch token colours to the dark theme. */
+	.astro-code,
+	.astro-code span {
+		color: var(--shiki-dark) !important;
+	}
 }
 
 * {

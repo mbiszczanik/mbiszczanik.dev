@@ -20,7 +20,9 @@ focus: the decisions behind Azure platform work.
 The site uses brand "Druk" (light mode), the same system as SkyCraft:
 Akademia Chmury. Tokens live at the top of `src/styles/global.css`; fonts
 are Archivo and JetBrains Mono variable woff2 files in `src/assets/fonts`
-(SIL Open Font License), wired up in `astro.config.mjs`. The rules: no
+(SIL Open Font License), wired up in `astro.config.mjs`. Dark mode follows
+the system setting (`prefers-color-scheme`) and only swaps token values,
+using the brand's dark palette; print always uses the light one. The rules: no
 box-shadow, text-shadow, border-radius or italics, and no font weight above
 600. The Open Graph card template is `scripts/og/og.html`.
 
