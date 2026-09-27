@@ -7,6 +7,10 @@
 	"assets": {
 		"directory": "./dist"
 	},
+	// Custom domain: Cloudflare creates the DNS record and certificate on deploy.
+	"routes": [
+		{ "pattern": "mbiszczanik.dev", "custom_domain": true }
+	],
 	// Required by `wrangler preview`, which Workers Builds runs for non-production branches.
 	"previews": {}
 }

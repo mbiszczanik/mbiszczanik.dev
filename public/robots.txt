@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://DOMAIN/sitemap-index.xml
+Sitemap: https://mbiszczanik.dev/sitemap-index.xml
