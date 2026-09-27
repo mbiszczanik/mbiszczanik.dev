@@ -1,124 +1,259 @@
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+  Brand "Druk" v2.2, light mode: the same system as SkyCraft: Akademia Chmury
+  (skycraft-akademia-internal/themes/koncepty.src.css).
+  Rules: no box-shadow, text-shadow, border-radius or italics; no font weight above 600.
  */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--ink: #14130f;
+	--lede: #4a4635;
+	--soft: #5d584e;
+	--meta: #656056;
+	--rule: #d3ccbe;
+	--paper: #f2efe9;
+	--sky: #dde6f2;
+	--accent: #1d4ed8;
+	--sans: var(--font-archivo), system-ui, -apple-system, sans-serif;
+	--mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+	--column: 760px;
 }
+
+* {
+	box-sizing: border-box;
+	border-radius: 0;
+	box-shadow: none;
+	text-shadow: none;
+}
+
+html {
+	background: var(--paper);
+}
+
 body {
-	font-family: var(--font-atkinson);
 	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
+	font-family: var(--sans);
+	font-weight: 400;
+	font-synthesis-weight: none;
+	color: var(--lede);
+	background:
+		linear-gradient(180deg, var(--sky) 0, var(--paper) 640px) no-repeat,
+		var(--paper);
+	font-size: 18px;
+	line-height: 1.6;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
 }
+
 main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+	max-width: var(--column);
+	margin: 0 auto;
+	padding: 48px 24px 32px;
 }
+
+/* Mono label above a title, led by a 36px accent dash. */
+.eyebrow {
+	font-family: var(--mono);
+	font-size: 13px;
+	letter-spacing: 0.13em;
+	text-transform: uppercase;
+	color: var(--meta);
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 6px 12px;
+	margin-bottom: 24px;
+}
+
+.eyebrow::before {
+	content: '';
+	width: 36px;
+	height: 1px;
+	background: var(--accent);
+}
+
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
-}
-h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
 h4 {
-	font-size: 1.563em;
+	color: var(--ink);
 }
-h5 {
-	font-size: 1.25em;
+
+h1 {
+	font-weight: 400;
+	font-size: 44px;
+	line-height: 1.06;
+	letter-spacing: -0.032em;
+	margin: 0 0 0.6em;
 }
+
+h2 {
+	font-weight: 400;
+	font-size: 30px;
+	line-height: 1.1;
+	letter-spacing: -0.028em;
+	margin: 2.2em 0 0.7em;
+	padding-top: 1em;
+	border-top: 1px solid var(--rule);
+}
+
+h3 {
+	font-weight: 500;
+	font-size: 22px;
+	line-height: 1.25;
+	letter-spacing: -0.024em;
+	margin: 1.6em 0 0.5em;
+}
+
+h4 {
+	font-weight: 500;
+	font-size: 18px;
+	margin: 1.4em 0 0.4em;
+}
+
+p {
+	margin: 0.8em 0;
+	max-width: 60ch;
+}
+
 strong,
 b {
-	font-weight: 700;
+	font-weight: 500;
+	color: var(--ink);
 }
+
+em,
+i {
+	font-style: normal;
+	font-weight: 500;
+	color: var(--ink);
+}
+
 a {
 	color: var(--accent);
+	text-decoration: none;
+	border-bottom: 1px solid var(--rule);
 }
+
 a:hover {
-	color: var(--accent);
+	border-bottom-color: var(--accent);
 }
-p {
-	margin-bottom: 1em;
+
+ul {
+	list-style: none;
+	padding-left: 0;
 }
-.prose p {
-	margin-bottom: 2em;
+
+ul > li {
+	position: relative;
+	padding-left: 26px;
+	margin: 0.5em 0;
 }
-textarea {
-	width: 100%;
-	font-size: 16px;
+
+ul > li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.8em;
+	width: 14px;
+	height: 2px;
+	background: var(--accent);
 }
-input {
-	font-size: 16px;
+
+ol {
+	padding-left: 1.6em;
 }
-table {
-	width: 100%;
+
+ol > li {
+	margin: 0.5em 0;
 }
+
+ol > li::marker {
+	font-family: var(--mono);
+	font-size: 0.85em;
+	color: var(--meta);
+}
+
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 8px;
+	display: block;
+	margin: 1.6em auto;
 }
-code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
-blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
-}
+
 hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	border: 0;
+	border-top: 1px solid var(--rule);
+	margin: 2.5em 0;
 }
+
+/* H2 carries its own rule; a "---" right before it would double it. */
+hr + h2 {
+	border-top: 0;
+	padding-top: 0;
+	margin-top: 0;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1.4em 0;
+	font-size: 0.95em;
+	line-height: 1.45;
+}
+
+th,
+td {
+	text-align: left;
+	vertical-align: top;
+	padding: 0.5em 1.1em 0.5em 0;
+	border-bottom: 1px solid var(--rule);
+}
+
+th {
+	font-weight: 500;
+	color: var(--ink);
+	border-bottom-color: var(--ink);
+}
+
+code {
+	font-family: var(--mono);
+	font-size: 0.9em;
+	color: var(--ink);
+}
+
+/* Code blocks: no box, a hairline on the left (Shiki's inline background is overridden). */
+pre {
+	font-size: 15px;
+	line-height: 1.55;
+	margin: 1.4em 0;
+	padding: 0.2em 0 0.2em 1em;
+	border-left: 1px solid var(--rule);
+	overflow-x: auto;
+	background-color: transparent !important;
+}
+
+pre > code {
+	font-size: inherit;
+	color: inherit;
+}
+
+blockquote {
+	border-left: 2px solid var(--accent);
+	margin: 1em 0;
+	padding: 0.1em 0 0.1em 1em;
+}
+
 @media (max-width: 720px) {
 	body {
-		font-size: 18px;
+		font-size: 17px;
 	}
 	main {
-		padding: 1em;
+		padding: 32px 20px 24px;
+	}
+	h1 {
+		font-size: 34px;
+	}
+	h2 {
+		font-size: 26px;
 	}
 }
 
@@ -130,12 +265,47 @@ hr {
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
 	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
 	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+/* Print: plain paper, full width, no site chrome. */
+@page {
+	margin: 18mm 16mm;
+}
+
+@media print {
+	html,
+	body {
+		background: #fff;
+	}
+	body {
+		font-size: 11pt;
+	}
+	main {
+		max-width: none;
+		padding: 0;
+	}
+	.site-header,
+	.site-footer {
+		display: none;
+	}
+	h1,
+	h2,
+	h3 {
+		break-after: avoid;
+	}
+	p,
+	li,
+	blockquote,
+	pre,
+	tr {
+		break-inside: avoid;
+	}
+	a {
+		color: inherit;
+		text-decoration: underline;
+		border-bottom: 0;
+	}
 }

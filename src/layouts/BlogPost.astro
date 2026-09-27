@@ -32,24 +32,27 @@ const postURL = canonicalURL ?? new URL(Astro.url.pathname, Astro.site).href;
   <body>
     <Header />
     <main>
-      <article>
-        <div class="prose">
-          <div class="title">
-            <div class="date">
-              <FormattedDate date={pubDate} />
-              {
-                updatedDate && (
-                  <div class="last-updated-on">
-                    Last updated on <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
-            </div>
-            <h1>{title}</h1>
-            <hr />
+      <article class="prose">
+        <header class="title">
+          <div class="eyebrow">
+            <a href="/blog/">Blog</a>
+            <span class="sep" aria-hidden="true">·</span>
+            <FormattedDate date={pubDate} />
+            {
+              updatedDate && (
+                <>
+                  <span class="sep" aria-hidden="true">·</span>
+                  <span>
+                    Updated <FormattedDate date={updatedDate} />
+                  </span>
+                </>
+              )
+            }
           </div>
-          <slot />
-        </div>
+          <h1>{title}</h1>
+          <p class="lede">{description}</p>
+        </header>
+        <slot />
       </article>
     </main>
     <Footer />
@@ -57,32 +60,24 @@ const postURL = canonicalURL ?? new URL(Astro.url.pathname, Astro.site).href;
 </html>
 
 <style>
-  main {
-    width: calc(100% - 2em);
-    max-width: 100%;
-    margin: 0;
-  }
-  .prose {
-    width: 720px;
-    max-width: calc(100% - 2em);
-    margin: auto;
-    padding: 1em;
-    color: rgb(var(--gray-dark));
-  }
   .title {
-    margin-bottom: 1em;
-    padding: 1em 0;
-    text-align: center;
-    line-height: 1;
+    margin-bottom: 1.5em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid var(--rule);
   }
-  .title h1 {
-    margin: 0 0 0.5em 0;
+  .sep {
+    color: var(--rule);
   }
-  .date {
-    margin-bottom: 0.5em;
-    color: rgb(var(--gray));
+  .eyebrow a {
+    color: inherit;
+    border-bottom: 0;
   }
-  .last-updated-on {
-    font-style: italic;
+  .eyebrow a:hover {
+    color: var(--accent);
+  }
+  .lede {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0;
   }
 </style>

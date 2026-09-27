@@ -2,10 +2,10 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
+import PostList from '../components/PostList.astro';
 import PersonSchema from '../components/schema/PersonSchema.astro';
 import { getCollection } from 'astro:content';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR_JOB_TITLE } from '../consts';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -20,27 +20,16 @@ const posts = (await getCollection('blog')).sort(
   <body>
     <Header />
     <main>
+      <div class="eyebrow">{AUTHOR_JOB_TITLE}</div>
       <h1>Marcin Biszczanik</h1>
-      <p>Cloud and Platform Consultant. Notes on the decisions behind Azure platform work.</p>
+      <p class="lede">Notes on the decisions behind Azure platform work.</p>
       <p>
-        I write about the decisions behind Azure platform work: landing zones, Azure
-        Verified Modules, Bicep, IaC governance, and migrations. Read more
-        <a href="/about/">about me</a>.
+        Landing zones, Azure Verified Modules, Bicep, IaC governance, and migrations:
+        what I chose, what I rejected, and why. Read more <a href="/about/">about me</a>.
       </p>
       <section>
         <h2>Latest posts</h2>
-        <ul class="post-list">
-          {
-            posts.map((post) => (
-              <li>
-                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-                <span class="date">
-                  <FormattedDate date={post.data.pubDate} />
-                </span>
-              </li>
-            ))
-          }
-        </ul>
+        <PostList posts={posts} />
       </section>
     </main>
     <Footer />
@@ -48,16 +37,19 @@ const posts = (await getCollection('blog')).sort(
 </html>
 
 <style>
-  .post-list {
-    list-style: none;
-    padding: 0;
+  .lede {
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--ink);
   }
-  .post-list li {
-    margin-bottom: 0.75em;
-  }
-  .post-list .date {
-    display: block;
-    font-size: 0.85em;
-    opacity: 0.7;
+  h2 {
+    border-top: 0;
+    padding-top: 0;
+    font-size: 13px;
+    font-family: var(--mono);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--meta);
+    margin: 3em 0 12px;
   }
 </style>

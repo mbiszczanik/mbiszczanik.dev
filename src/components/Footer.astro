@@ -1,32 +1,73 @@
 ---
-import { AUTHOR_NAME, GITHUB_URL, LINKEDIN_URL } from '../consts';
+import { AUTHOR_NAME, AUTHOR_MOTTO, GITHUB_URL, LINKEDIN_URL } from '../consts';
 
 const today = new Date();
 ---
 
-<footer>
-  <p>&copy; {today.getFullYear()} {AUTHOR_NAME}. All rights reserved.</p>
-  <nav aria-label="Footer">
-    <a href={GITHUB_URL} target="_blank" rel="noopener">GitHub</a>
-    <a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>
-    <a href="/privacy/">Privacy</a>
-  </nav>
+<footer class="site-footer">
+  <div class="sig">
+    <div>
+      <div class="sig-name">{AUTHOR_NAME}</div>
+      <div class="sig-motto">{AUTHOR_MOTTO}</div>
+    </div>
+    <nav aria-label="Footer">
+      <a href={GITHUB_URL} target="_blank" rel="noopener">GitHub</a>
+      <a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+  </div>
+  <p class="copyright">&copy; {today.getFullYear()} {AUTHOR_NAME}. All rights reserved.</p>
 </footer>
 
 <style>
   footer {
-    padding: 2em 1em 4em 1em;
-    text-align: center;
-    color: rgb(var(--gray, 96, 115, 159));
-    font-size: 0.9em;
+    max-width: var(--column);
+    margin: 0 auto;
+    padding: 0 24px 64px;
   }
-  footer nav {
+  .sig {
+    border-top: 1px solid var(--rule);
+    margin-top: 3em;
+    padding-top: 16px;
     display: flex;
-    justify-content: center;
-    gap: 1.5em;
-    margin-top: 0.75em;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px 24px;
   }
-  footer a {
-    color: inherit;
+  .sig-name {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .sig-motto,
+  nav,
+  .copyright {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--meta);
+  }
+  nav {
+    display: flex;
+    gap: 16px;
+  }
+  nav a {
+    color: var(--soft);
+    border-bottom: 0;
+  }
+  nav a:hover {
+    color: var(--accent);
+  }
+  .copyright {
+    margin: 12px 0 0;
+    max-width: none;
+    font-size: 12px;
+  }
+  @media (max-width: 720px) {
+    footer {
+      padding: 0 20px 48px;
+    }
   }
 </style>
