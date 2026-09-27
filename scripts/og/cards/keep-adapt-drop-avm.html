@@ -1,33 +1,33 @@
 <!doctype html>
-<!-- Custom card for keep-adapt-drop-avm in the brand "Druk" dark palette: a short hook on the left
+<!-- Custom card for keep-adapt-drop-avm in the brand "Druk" light palette: a short hook on the left
      (dev.to prints the full title under the cover) and the method's verdict log on the right.
      generate-og-image.mjs sets the size class and screenshots it at 1200x630 and 1000x420. -->
 <html lang="en"><head><meta charset="utf-8"><style>
 @font-face{font-family:Archivo;font-weight:100 900;src:url(../../../src/assets/fonts/Archivo-var-latin.woff2) format("woff2")}
 @font-face{font-family:"JetBrains Mono";font-weight:100 800;src:url(../../../src/assets/fonts/JetBrainsMono-var-latin.woff2) format("woff2")}
 html,body{margin:0}
-body{background:linear-gradient(180deg,#0d1426 0,#0e0e0f 100%);font-family:Archivo,sans-serif;color:#fff;position:relative;overflow:hidden;box-sizing:border-box;display:flex;align-items:center}
+body{background:linear-gradient(180deg,#dde6f2 0,#f2efe9 100%);font-family:Archivo,sans-serif;color:#14130f;position:relative;overflow:hidden;box-sizing:border-box;display:flex;align-items:center}
 .mono{font-family:"JetBrains Mono",monospace}
-.eb{font-family:"JetBrains Mono",monospace;letter-spacing:.13em;text-transform:uppercase;color:#85858c;position:relative}
-.eb::before{content:"";position:absolute;left:0;height:2px;background:#60a5fa}
+.eb{font-family:"JetBrains Mono",monospace;letter-spacing:.13em;text-transform:uppercase;color:#656056;position:relative}
+.eb::before{content:"";position:absolute;left:0;height:2px;background:#1d4ed8}
 h1{margin:0;font-weight:400;letter-spacing:-.03em;line-height:1.04}
-h1 em{font-style:normal;color:#60a5fa}
-.lede{color:#a6a6ab;line-height:1.35;margin:0}
-.lede b{font-weight:400;color:#fff}
-.log{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);box-sizing:border-box}
-.log h2{margin:0;font-family:"JetBrains Mono",monospace;font-weight:400;letter-spacing:.13em;text-transform:uppercase;color:#60a5fa}
-.log .q{color:#a6a6ab;margin:0}
-.log .q b{font-weight:400;color:#fff}
+h1 em{font-style:normal;color:#1d4ed8}
+.lede{color:#4a4635;line-height:1.35;margin:0}
+.lede b{font-weight:400;color:#14130f}
+.log{border:1px solid #d3ccbe;background:#f2efe9;box-sizing:border-box}
+.log h2{margin:0;font-family:"JetBrains Mono",monospace;font-weight:400;letter-spacing:.13em;text-transform:uppercase;color:#1d4ed8}
+.log .q{color:#4a4635;margin:0}
+.log .q b{font-weight:400;color:#14130f}
 .rows{font-family:"JetBrains Mono",monospace}
 .row{display:flex;justify-content:space-between;align-items:center}
 .row .v{letter-spacing:.08em;text-transform:uppercase}
-.drop .m{color:#5c5c63;text-decoration:line-through;text-decoration-color:#5c5c63}
-.drop .v{color:#5c5c63}
-.adapt .m{color:#d6d6da}
-.adapt .v{color:#a6a6ab}
-.keep .m{color:#fff}
-.keep .v{color:#0e0e0f;background:#60a5fa}
-.keep{border-top:1px solid rgba(255,255,255,.14)}
+.drop .m{color:#b3aa98;text-decoration:line-through;text-decoration-color:#b3aa98}
+.drop .v{color:#b3aa98}
+.adapt .m{color:#14130f}
+.adapt .v{color:#656056}
+.keep .m{color:#14130f}
+.keep .v{color:#fff;background:#1d4ed8}
+.keep{border-top:1px solid #d3ccbe}
 
 /* dev.to cover, 1000x420 */
 body.devto{width:1000px;height:420px;padding:0 56px;gap:40px}
