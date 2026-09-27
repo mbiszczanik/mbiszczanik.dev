@@ -6,14 +6,19 @@ URLs.
 
 ## Publishing a new post
 
-1. Publish the post on the blog first. Merge to `main`; Cloudflare Workers
+1. Run `npm run og` and commit the new images. It renders the post's
+   social card (`public/og/<slug>.png`, 1200x630) and its dev.to cover
+   (`public/og/<slug>-devto.png`, 1000x420) from the title and the `ogEyebrow`
+   frontmatter field (default: the first two tags). Without them the post falls back to the site card.
+2. Publish the post on the blog first. Merge to `main`; Cloudflare Workers
    Builds deploys automatically.
-2. On dev.to, create a new post and paste the same Markdown.
-3. In the dev.to post settings, set the canonical URL to the blog post URL:
+3. On dev.to, create a new post and paste the same Markdown.
+4. In the dev.to post settings, set the canonical URL to the blog post URL:
    `https://mbiszczanik.dev/blog/<slug>/`. If you use dev.to frontmatter, the
    `canonical_url` field must match the blog URL exactly, character for
-   character, including the trailing slash.
-4. Optionally post a short LinkedIn update linking to the blog post (not
+   character, including the trailing slash. Set `cover_image` to
+   `https://mbiszczanik.dev/og/<slug>-devto.png`.
+5. Optionally post a short LinkedIn update linking to the blog post (not
    the dev.to copy).
 
 ## Canonical URLs of published posts
