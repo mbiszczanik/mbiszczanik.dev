@@ -30,6 +30,7 @@ rest are checked by hand on the day of the merge.
   log entry), the source shall be updated in the same week the post is
   published.
 - If a post contains `<!--`, `TODO`, `FIXME` or `DRAFT` outside a code block,
+  or an `.astro` file has one of those words inside an HTML comment,
   then `npm run build` shall fail (`scripts/check-content-markers.mjs`).
   HTML comments do not render but reach the published page source.
 
