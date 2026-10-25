@@ -33,3 +33,4 @@ URLs.
 | Post | Canonical URL |
 | --- | --- |
 | When Azure Verified Modules appeared, I had to decide what of my own work to throw away | `https://mbiszczanik.dev/blog/keep-adapt-drop-avm/` |
+| Which Azure landing zone implementation should you build on in Bicep? | `https://mbiszczanik.dev/blog/choose-landing-zone-bicep/` |

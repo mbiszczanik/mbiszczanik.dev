@@ -2,7 +2,7 @@
 title: "Which Azure landing zone implementation should you build on in Bicep?"
 description: "Classic ALZ-Bicep, the AVM-based platform landing zone, a custom composition, or a phased path: a decision framework for Bicep landing zones, with every date-sensitive fact checked against primary sources."
 author: "Marcin Biszczanik"
-pubDate: "2026-11-17"
+pubDate: "2026-10-26"
 ogEyebrow: "Landing zones · Bicep"
 tags: ["azure", "bicep", "landing-zones", "azure-verified-modules", "architecture"]
 ---
@@ -60,7 +60,7 @@ In practice that means a minor version bump can change a parameter you depend on
 - Read the module changelog before every bump, the way you would read release notes for a database engine.
 - Upgrade one module at a time, so a regression points at a single change.
 
-This is also where the June advice survives, in a new form. Then it was "verify each component is GA". Now it is "verify each module's version and status on the day you choose it". On 25 October 2026 the [AVM module index](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/) listed `avm/ptn/alz/empty` and `avm/ptn/alz/ama` as available, while the ALZ variant of the Azure Monitor baseline alerts pattern was still only proposed. Status moves both ways: in September I watched a network resource module I depend on go from maintained to orphaned in a matter of weeks.
+This is also where the June advice survives, in a new form. Then it was "verify each component is GA". Now it is "verify each module's version and status on the day you choose it". On 25 October 2026 the [AVM module index](https://azure.github.io/Azure-Verified-Modules/indexes/bicep/bicep-pattern-modules/) listed `avm/ptn/alz/empty` and `avm/ptn/alz/ama` as available, while the ALZ variant of the Azure Monitor baseline alerts pattern was still only proposed. Status moves both ways: in September I watched [a network resource module I depend on](/blog/keep-adapt-drop-avm/) go from maintained to orphaned in a matter of weeks.
 
 ## When does a custom composition on AVM win?
 
