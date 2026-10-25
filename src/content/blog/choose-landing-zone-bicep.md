@@ -40,7 +40,7 @@ Its structural weaknesses also age badly. Versioning is per repository tag, not 
 
 It gives you the same landing zone pattern, rebuilt from modules that are versioned, tested and published one by one. As of 25 October 2026, the [current Bicep accelerator](https://github.com/Azure/alz-bicep-accelerator) (release v2.4.0, 6 October 2026) builds management groups and policy through the `avm/ptn/alz/empty` pattern module and composes the rest from AVM resource modules: logging, the hub network, firewall, gateways, DNS. The [accelerator documentation](https://azure.github.io/Azure-Landing-Zones/accelerator/starter-bicep/) lists three networking choices, hub networking, Virtual WAN or none, and a step-by-step in-place migration path from classic.
 
-It also deploys through Azure Deployment Stacks. You can see it in the code: the templates carry separate role-assignment modules because, in their own words, "deployment stacks do not support cross-management group role assignments". If you have not decided how your team feels about Deployment Stacks, this choice makes part of that decision for you.
+It also deploys through Azure Deployment Stacks. The accelerator's [bootstrap scripts](https://github.com/Azure/accelerator-bootstrap-modules) create every deployment as a stack, at management group, subscription and resource group scope, and the templates are written around it: they carry separate role-assignment modules because, in their own words, "deployment stacks do not support cross-management group role assignments". If you have not decided how your team feels about Deployment Stacks, this choice makes part of that decision for you.
 
 ![What the AVM-based accelerator composes, all deployed as Deployment Stacks: governance through the avm/ptn/alz/empty pattern and separate role-assignment templates, management through a Log Analytics workspace, an automation account and the Azure Monitor Agent pattern, and connectivity through either hub networking or Virtual WAN modules. 23 distinct AVM modules, all on 0.x versions, as of 25 October 2026.](/diagrams/choose-landing-zone-bicep/composition.svg)
 
@@ -52,7 +52,7 @@ The advantages are the ones that matter over years, not weeks:
 
 ## What does "generally available" actually promise for AVM modules?
 
-Less than a stakeholder will assume, and you should say so before they find out. I counted the module references in the accelerator's templates on 25 October 2026: 23 distinct AVM modules, and every one of them is on a `0.x` version. The [AVM FAQ](https://azure.github.io/Azure-Verified-Modules/faq/) is explicit that a module does not need to reach 1.0.0 to be production ready, and equally explicit about what 1.0.0 brings: only from then on are breaking changes avoided and, when unavoidable, introduced through a major version.
+Less than a stakeholder will assume, and you should say so before they find out. I counted the module references in the accelerator's templates on 25 October 2026: 23 distinct AVM modules, and every one of them is on a `0.x` version. The [AVM FAQ](https://azure.github.io/Azure-Verified-Modules/resources/faq/) is explicit that a module does not need to reach 1.0.0 to be production ready, and equally explicit about what 1.0.0 brings: only from then on are breaking changes avoided and, when unavoidable, introduced through a major version.
 
 In practice that means a minor version bump can change a parameter you depend on. The accelerator is generally available as a product; its building blocks are production-ready modules with pre-1.0 version promises. Both statements are true, and the gap between them is your upgrade process:
 
@@ -72,7 +72,7 @@ The hidden cost is the policy catalog. Recreating the ALZ policy initiatives and
 
 Not for new work. In June the phased path was the honest answer to a hard deadline combined with platform components that were not yet ready: go live on the proven classic accelerator, migrate to AVM afterwards, and present the migration as a funded roadmap item rather than hide it. Two things killed it. The AVM option is now the default and the classic one has a support end date, so the "proven now, modern later" trade no longer buys anything. And the phased path always carried a quiet failure mode: if the first version works, the migration never gets funded, and you have built on classic after all.
 
-The phased path survives in one place: if you already run a classic ALZ-Bicep landing zone, you are on it whether you chose it or not. Your decision is no longer which framework, but when to run the in-place migration, and the answer is before 16 February 2027.
+The phased path survives in one place: if you already run a classic ALZ-Bicep landing zone, you are on it whether you chose it or not. Your decision is no longer which framework, but when to run the in-place migration, and the answer is before 16 February 2027. The [migration guide](https://azure.github.io/Azure-Landing-Zones/bicep/migration/) keeps your management group hierarchy in place and converges the existing resources onto the new templates. As of 25 October 2026 it does not cover networking yet, so plan the hub network separately and move it last.
 
 ## So which one should you choose?
 
@@ -84,7 +84,7 @@ Choose by your situation, not by the options list:
 | --- | --- | --- |
 | New landing zone, requirements fit the ALZ pattern | AVM platform landing zone | Pin module versions; decide your stance on Deployment Stacks |
 | New landing zone, topology or policy genuinely differs from ALZ | Custom composition on AVM resource modules | Budget the policy catalog explicitly |
-| Existing classic ALZ-Bicep landing zone | Migrate in place to the AVM platform landing zone | Plan the migration before 16 February 2027 |
+| Existing classic ALZ-Bicep landing zone | Migrate in place to the AVM platform landing zone | Plan the migration before 16 February 2027, networking last |
 | Conservative stakeholder asks "is this Microsoft best practice?" | AVM platform landing zone | Show the default in the accelerator, and explain what 0.x versions mean |
 
 ## How do you re-check these facts yourself?
@@ -111,6 +111,13 @@ gh api "repos/$repo/git/trees/main?recursive=1" --jq '.tree[].path' \
   | grep -E '^templates/.*\.bicep$' \
   | while read -r f; do curl -s "https://raw.githubusercontent.com/$repo/main/$f"; done \
   | grep -oE 'br/public:avm/[a-z0-9/-]+:[0-9.]+' | sort -u
+```
+
+That the accelerator's bootstrap deploys through Deployment Stacks:
+
+```bash
+gh api repos/Azure/accelerator-bootstrap-modules/contents/alz/local/scripts-bicep/bicep-deploy.ps1 \
+  -H "Accept: application/vnd.github.raw" | grep -n "DeploymentStack @"
 ```
 
 The status of the ALZ pattern modules in the AVM module index (`Available`, `Proposed`, `Orphaned`):
