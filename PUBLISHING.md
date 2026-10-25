@@ -19,7 +19,12 @@ URLs.
    `https://mbiszczanik.dev/blog/<slug>/`. If you use dev.to frontmatter, the
    `canonical_url` field must match the blog URL exactly, character for
    character, including the trailing slash. Set `cover_image` to
-   `https://mbiszczanik.dev/og/<slug>-devto.png`.
+   `https://mbiszczanik.dev/og/<slug>-devto.png`. Diagrams live in
+   `public/diagrams/<slug>/` and the post links them root-relative; in the
+   dev.to copy make every diagram URL absolute
+   (`https://mbiszczanik.dev/diagrams/<slug>/...`) and check in the preview
+   that dev.to renders the SVG. If it does not, link a PNG rendered with
+   headless Chrome instead.
 5. Optionally post a short LinkedIn update linking to the blog post (not
    the dev.to copy).
 
