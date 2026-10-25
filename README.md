@@ -10,7 +10,8 @@ focus: the decisions behind Azure platform work.
 | --- | --- |
 | `npm install` | Install dependencies |
 | `npm run dev` | Local dev server at `localhost:4321` |
-| `npm run build` | Production build to `./dist/` |
+| `npm run build` | Check posts for internal markers, then build to `./dist/` |
+| `npm run check:markers` | Fail on `<!--`, `TODO`, `FIXME` or `DRAFT` in posts outside code blocks |
 | `npm run preview` | Preview the build locally |
 | `npm run verify:seo` | Check SEO essentials in the built output |
 | `npm run og` | Regenerate `public/og-default.png` and `public/favicon.ico` (needs Chrome or Edge; override with `CHROME_PATH`) |
