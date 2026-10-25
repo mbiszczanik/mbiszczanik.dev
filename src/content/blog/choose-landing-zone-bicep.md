@@ -28,6 +28,8 @@ The classic accelerator moved from "maintenance mode" to a dated end of support.
 
 In June, the honest framing was "the strategic direction is AVM, but check whether each platform component you need is ready". By October the framing is simpler: the classic option has under four months of support left, and the AVM option is the default with an in-place migration guide from classic.
 
+![Timeline from February 2026 to February 2027: classic ALZ-Bicep removed from the accelerator on 16 February 2026, ADR-0001 written on 12 June 2026, accelerator v2.4.0 on 6 October 2026, the re-check on 25 October 2026, and ALZ-Bicep archived on 16 February 2027; between the first and last date classic gets bug, security and policy fixes only.](/diagrams/choose-landing-zone-bicep/timeline.svg)
+
 ## Why is classic ALZ-Bicep no longer an option for new work?
 
 Because a landing zone is a multi-year asset and this foundation stops being supported in February 2027. Everything that made it attractive is still true: it is the fastest path to a first deployment, it is battle-tested across many enterprise rollouts, it ships the full ALZ policy initiative, and "the Microsoft accelerator" is the easiest answer for a conservative stakeholder. None of that outweighs building on a repository that will be archived before most landing zones finish their first year.
@@ -39,6 +41,8 @@ Its structural weaknesses also age badly. Versioning is per repository tag, not 
 It gives you the same landing zone pattern, rebuilt from modules that are versioned, tested and published one by one. As of 25 October 2026, the [current Bicep accelerator](https://github.com/Azure/alz-bicep-accelerator) (release v2.4.0, 6 October 2026) builds management groups and policy through the `avm/ptn/alz/empty` pattern module and composes the rest from AVM resource modules: logging, the hub network, firewall, gateways, DNS. The [accelerator documentation](https://azure.github.io/Azure-Landing-Zones/accelerator/starter-bicep/) lists three networking choices, hub networking, Virtual WAN or none, and a step-by-step in-place migration path from classic.
 
 It also deploys through Azure Deployment Stacks. You can see it in the code: the templates carry separate role-assignment modules because, in their own words, "deployment stacks do not support cross-management group role assignments". If you have not decided how your team feels about Deployment Stacks, this choice makes part of that decision for you.
+
+![What the AVM-based accelerator composes, all deployed as Deployment Stacks: governance through the avm/ptn/alz/empty pattern and separate role-assignment templates, management through a Log Analytics workspace, an automation account and the Azure Monitor Agent pattern, and connectivity through either hub networking or Virtual WAN modules. 23 distinct AVM modules, all on 0.x versions, as of 25 October 2026.](/diagrams/choose-landing-zone-bicep/composition.svg)
 
 The advantages are the ones that matter over years, not weeks:
 
@@ -74,12 +78,55 @@ The phased path survives in one place: if you already run a classic ALZ-Bicep la
 
 Choose by your situation, not by the options list:
 
+![Decision tree: if you already run classic ALZ-Bicep, migrate in place to AVM before 16 February 2027; otherwise, if your management groups or policy baseline genuinely differ from ALZ, compose your own on AVM resource modules; otherwise build on the AVM platform landing zone and pin every module version. The phased path is retired for new work.](/diagrams/choose-landing-zone-bicep/decision.svg)
+
 | Your situation (as of October 2026) | Build on | What to do first |
 | --- | --- | --- |
 | New landing zone, requirements fit the ALZ pattern | AVM platform landing zone | Pin module versions; decide your stance on Deployment Stacks |
 | New landing zone, topology or policy genuinely differs from ALZ | Custom composition on AVM resource modules | Budget the policy catalog explicitly |
 | Existing classic ALZ-Bicep landing zone | Migrate in place to the AVM platform landing zone | Plan the migration before 16 February 2027 |
 | Conservative stakeholder asks "is this Microsoft best practice?" | AVM platform landing zone | Show the default in the accelerator, and explain what 0.x versions mean |
+
+## How do you re-check these facts yourself?
+
+Every date-sensitive fact in this article comes from a public source you can query in a few minutes. These are the checks I ran on 25 October 2026, in bash with the GitHub CLI; run them on the day you decide.
+
+The support dates of classic ALZ-Bicep, from its README:
+
+```bash
+curl -sL https://raw.githubusercontent.com/Azure/ALZ-Bicep/main/README.md | grep -n "2026\|2027"
+```
+
+The current release of the AVM-based accelerator:
+
+```bash
+gh release view -R Azure/alz-bicep-accelerator --json tagName,publishedAt
+```
+
+Every AVM module the accelerator's templates reference, with the pinned version. Anything below `1.0` can still change its parameters in a minor release:
+
+```bash
+repo=Azure/alz-bicep-accelerator
+gh api "repos/$repo/git/trees/main?recursive=1" --jq '.tree[].path' \
+  | grep -E '^templates/.*\.bicep$' \
+  | while read -r f; do curl -s "https://raw.githubusercontent.com/$repo/main/$f"; done \
+  | grep -oE 'br/public:avm/[a-z0-9/-]+:[0-9.]+' | sort -u
+```
+
+The status of the ALZ pattern modules in the AVM module index (`Available`, `Proposed`, `Orphaned`):
+
+```bash
+curl -sL https://raw.githubusercontent.com/Azure/Azure-Verified-Modules/main/docs/static/module-indexes/BicepPatternModules.csv \
+  | grep -i 'alz' | cut -d, -f1,3,4
+```
+
+The versions published to the Bicep registry for any one module, here the management group and policy pattern:
+
+```bash
+curl -s https://mcr.microsoft.com/v2/bicep/avm/ptn/alz/empty/tags/list
+```
+
+If any of these answers differs from what is written here, trust the answer, not the article.
 
 ## When does this framework not apply?
 
