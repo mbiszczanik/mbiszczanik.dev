@@ -2,7 +2,7 @@
 title: "Which Azure landing zone implementation should you build on in Bicep?"
 description: "Classic ALZ-Bicep, the AVM-based platform landing zone, a custom composition, or a phased path: a decision framework for Bicep landing zones, with every date-sensitive fact checked against primary sources."
 author: "Marcin Biszczanik"
-pubDate: "2026-10-26"
+pubDate: "2026-10-29"
 ogEyebrow: "Landing zones · Bicep"
 tags: ["azure", "bicep", "landing-zones", "azure-verified-modules", "architecture"]
 ---
