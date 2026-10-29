@@ -1,57 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" role="img" aria-labelledby="t d">
-  <title id="t">What the AVM-based Bicep platform landing zone accelerator composes</title>
-  <desc id="d">Everything is deployed as Azure Deployment Stacks. Governance: the avm/ptn/alz/empty pattern module for management groups and the ALZ policy library, plus role-assignment modules in separate templates because stacks cannot assign roles across management groups. Management: Log Analytics workspace, automation account and the Azure Monitor Agent pattern. Connectivity: hub networking (virtual network, Azure Firewall and policy, gateway, Bastion, DNS resolver, private DNS zones) or Virtual WAN (virtual WAN, virtual hub, VPN and ExpressRoute gateways). 23 distinct AVM modules, all on 0.x versions, as of 25 October 2026, release v2.4.0.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 370" role="img" aria-labelledby="t d">
+  <title id="t">AVM platform landing zone: components and ownership</title>
+  <desc id="d">The supported accelerator provides configurable governance, management and connectivity. Governance covers management groups and policy; management covers logging and automation; connectivity includes hub networking or Virtual WAN. The documented delivery pipeline uses Deployment Stacks and standard deployment what-if for preview. The adopting team owns upgrade approval, removal review and failure recovery. Test supported configuration before taking ownership of custom orchestration.</desc>
   <style>
-    .ink { fill: #14130f; } .meta { fill: #656056; } .acc { fill: #1d4ed8; }
-    .frame { fill: none; stroke: #656056; } .box { fill: none; stroke: #14130f; }
-    .key { fill: none; stroke: #1d4ed8; }
-    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 12px; }
-    .mod { font-family: ui-monospace, Consolas, monospace; font-size: 11.5px; }
-    .h { font-size: 13px; font-weight: 600; }
-    .lbl { font-family: ui-monospace, Consolas, monospace; font-size: 11px; letter-spacing: 0.04em; }
-    @media (prefers-color-scheme: dark) {
-      .ink { fill: #ffffff; } .meta { fill: #a6a6ab; } .acc { fill: #60a5fa; }
-      .frame { stroke: #85858c; } .box { stroke: #ffffff; } .key { stroke: #60a5fa; }
-    }
+    .ink{fill:#14130f}.meta{fill:#656056}.acc{fill:#1d4ed8}.box{fill:none;stroke:#14130f}.band{fill:#dde6f2}
+    text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:13px}.h{font-size:16px;font-weight:600}.label{font-family:ui-monospace,Consolas,monospace;font-size:12px}
+    @media(prefers-color-scheme:dark){.ink{fill:#fff}.meta{fill:#a6a6ab}.acc{fill:#60a5fa}.box{stroke:#85858c}.band{fill:#0d1426}}
   </style>
-  <rect class="frame" x="16" y="16" width="728" height="340" stroke-dasharray="6 4"/>
-  <text class="lbl meta" x="32" y="40">DEPLOYED AS AZURE DEPLOYMENT STACKS</text>
-
-  <rect class="box" x="32" y="56" width="224" height="284"/>
-  <text class="h ink" x="46" y="80">Governance</text>
-  <rect class="key" x="44" y="92" width="200" height="64"/>
-  <text class="mod acc" x="54" y="112">ptn/alz/empty</text>
-  <text class="meta" x="54" y="130">management groups + policy</text>
-  <text class="meta" x="54" y="146">(ALZ policy library)</text>
-  <text class="mod ink" x="46" y="184">ptn/authorization/</text>
-  <text class="mod ink" x="46" y="200">role-assignment</text>
-  <text class="meta" x="46" y="222">in separate templates:</text>
-  <text class="meta" x="46" y="238">stacks cannot assign roles</text>
-  <text class="meta" x="46" y="254">across management groups</text>
-
-  <rect class="box" x="268" y="56" width="224" height="284"/>
-  <text class="h ink" x="282" y="80">Management</text>
-  <text class="mod ink" x="282" y="112">res/operational-insights/</text>
-  <text class="mod ink" x="282" y="128">workspace</text>
-  <text class="mod ink" x="282" y="160">res/automation/</text>
-  <text class="mod ink" x="282" y="176">automation-account</text>
-  <text class="mod ink" x="282" y="208">ptn/alz/ama</text>
-  <text class="meta" x="282" y="226">Azure Monitor Agent</text>
-
-  <rect class="box" x="504" y="56" width="224" height="284"/>
-  <text class="h ink" x="518" y="80">Connectivity</text>
-  <text class="meta" x="518" y="98">hub networking or Virtual WAN</text>
-  <text class="mod ink" x="518" y="126">virtual-network</text>
-  <text class="mod ink" x="518" y="144">azure-firewall + policy</text>
-  <text class="mod ink" x="518" y="162">virtual-network-gateway</text>
-  <text class="mod ink" x="518" y="180">bastion-host</text>
-  <text class="mod ink" x="518" y="198">dns-resolver</text>
-  <text class="mod ink" x="518" y="216">private DNS zones (ptn)</text>
-  <text class="meta" x="518" y="246">or, with Virtual WAN:</text>
-  <text class="mod ink" x="518" y="266">virtual-wan, virtual-hub</text>
-  <text class="mod ink" x="518" y="284">vpn-gateway</text>
-  <text class="mod ink" x="518" y="302">express-route-gateway</text>
-
-  <text class="ink" x="16" y="388">23 distinct AVM modules in the accelerator templates, every one on a 0.x version.</text>
-  <text class="lbl meta" x="16" y="410">COUNTED 25 OCT 2026 · AZURE/ALZ-BICEP-ACCELERATOR v2.4.0</text>
+  <text class="label acc" x="24" y="30">SUPPORTED CONFIGURATION FIRST</text>
+  <rect class="box" x="24" y="48" width="224" height="148"/>
+  <text class="h ink" x="40" y="78">Governance</text>
+  <text class="ink" x="40" y="109">Management groups</text>
+  <text class="ink" x="40" y="132">Policies and assignments</text>
+  <text class="meta" x="40" y="168">Test hierarchy requirements</text>
+  <rect class="box" x="268" y="48" width="224" height="148"/>
+  <text class="h ink" x="284" y="78">Management</text>
+  <text class="ink" x="284" y="109">Logging</text>
+  <text class="ink" x="284" y="132">Automation</text>
+  <text class="meta" x="284" y="168">Choose required components</text>
+  <rect class="box" x="512" y="48" width="224" height="148"/>
+  <text class="h ink" x="528" y="78">Connectivity</text>
+  <text class="ink" x="528" y="109">Hub networking</text>
+  <text class="ink" x="528" y="132">or Virtual WAN</text>
+  <text class="meta" x="528" y="168">Review resource settings</text>
+  <rect class="band" x="24" y="220" width="712" height="110"/>
+  <text class="label acc" x="40" y="245">DOCUMENTED DELIVERY MODEL</text>
+  <text class="ink" x="40" y="270">Deployment Stacks; standard deployment what-if for preview.</text>
+  <text class="ink" x="40" y="295">Your team owns upgrades, removal review and failure recovery.</text>
+  <text class="meta" x="24" y="357">Sources reviewed 29 Oct 2026.</text>
 </svg>

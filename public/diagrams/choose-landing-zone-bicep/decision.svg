@@ -1,58 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="t d">
-  <title id="t">Which Bicep landing zone foundation to build on, as of October 2026</title>
-  <desc id="d">If you already run classic ALZ-Bicep, migrate in place to the AVM platform landing zone before 16 February 2027. Otherwise, if your management groups or policy baseline genuinely differ from ALZ, build a custom composition on AVM resource modules and budget the policy catalog. Otherwise build on the AVM platform landing zone and pin every module version. The phased path, classic first and AVM later, is retired for new work.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 510" role="img" aria-labelledby="t d">
+  <title id="t">Choosing a Bicep landing zone foundation</title>
+  <desc id="d">First ask whether Classic is already deployed. Existing platforms need a migration assessment covering identifiers, policy continuity, rollback and networking scope. For new work, test the AVM accelerator's supported configuration. If it meets the requirements, adopt it and name the upgrade and removal owner. If not, document the unmet requirement before considering a bounded custom composition. A deliberate decision to own a framework also needs explicit maintenance ownership. Classic-first for new work requires an exception and an exit plan.</desc>
   <style>
-    .ink { fill: #14130f; } .meta { fill: #656056; } .acc { fill: #1d4ed8; }
-    .q { fill: none; stroke: #14130f; } .o { fill: none; stroke: #656056; }
-    .win { fill: #dde6f2; stroke: #1d4ed8; } .gone { fill: none; stroke: #656056; }
-    .arrow { stroke: #14130f; fill: none; } .head { fill: #14130f; }
-    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 13px; }
-    .h { font-weight: 600; }
-    .lbl { font-family: ui-monospace, Consolas, monospace; font-size: 11px; letter-spacing: 0.04em; }
-    @media (prefers-color-scheme: dark) {
-      .ink { fill: #ffffff; } .meta { fill: #a6a6ab; } .acc { fill: #60a5fa; }
-      .q { stroke: #ffffff; } .o { stroke: #85858c; }
-      .win { fill: #0d1426; stroke: #60a5fa; } .gone { stroke: #85858c; }
-      .arrow { stroke: #ffffff; } .head { fill: #ffffff; }
-    }
+    .ink{fill:#14130f}.meta{fill:#656056}.acc{fill:#1d4ed8}.box{fill:none;stroke:#14130f}.out{fill:none;stroke:#656056}.win{fill:#dde6f2;stroke:#1d4ed8}.arrow{fill:none;stroke:#14130f}.head{fill:#14130f}
+    text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:13px}.h{font-weight:600}.label{font-family:ui-monospace,Consolas,monospace;font-size:11px}
+    @media(prefers-color-scheme:dark){.ink{fill:#fff}.meta{fill:#a6a6ab}.acc{fill:#60a5fa}.box,.arrow{stroke:#fff}.out{stroke:#85858c}.win{fill:#0d1426;stroke:#60a5fa}.head{fill:#fff}}
   </style>
-
-  <rect class="q" x="20" y="20" width="400" height="60"/>
-  <text class="ink h" x="36" y="55">Do you already run classic ALZ-Bicep?</text>
-
-  <line class="arrow" x1="420" y1="50" x2="490" y2="50" stroke-width="1.5"/>
-  <polygon class="head" points="490,45 500,50 490,55"/>
-  <text class="lbl meta" x="440" y="42">YES</text>
-  <rect class="o" x="500" y="20" width="240" height="60"/>
-  <text class="ink h" x="514" y="45">Migrate in place to AVM</text>
-  <text class="meta" x="514" y="65">before 16 February 2027</text>
-
-  <line class="arrow" x1="220" y1="80" x2="220" y2="126" stroke-width="1.5"/>
-  <polygon class="head" points="215,126 220,136 225,126"/>
-  <text class="lbl meta" x="230" y="112">NO</text>
-
-  <rect class="q" x="20" y="136" width="400" height="74"/>
-  <text class="ink h" x="36" y="166">Do your management groups or policy</text>
-  <text class="ink h" x="36" y="186">baseline genuinely differ from ALZ?</text>
-
-  <line class="arrow" x1="420" y1="173" x2="490" y2="173" stroke-width="1.5"/>
-  <polygon class="head" points="490,168 500,173 490,178"/>
-  <text class="lbl meta" x="440" y="165">YES</text>
-  <rect class="o" x="500" y="136" width="240" height="74"/>
-  <text class="ink h" x="514" y="162">Custom composition</text>
-  <text class="ink h" x="514" y="180">on AVM resource modules</text>
-  <text class="meta" x="514" y="199">budget the policy catalog</text>
-
-  <line class="arrow" x1="220" y1="210" x2="220" y2="256" stroke-width="1.5"/>
-  <polygon class="head" points="215,256 220,266 225,256"/>
-  <text class="lbl meta" x="230" y="242">NO</text>
-
-  <rect class="win" x="20" y="266" width="400" height="74"/>
-  <text class="acc h" x="36" y="296">AVM platform landing zone</text>
-  <text class="ink" x="36" y="318">pin every module version; read changelogs</text>
-
-  <rect class="gone" x="20" y="372" width="720" height="50" stroke-dasharray="6 4"/>
-  <text class="meta" x="36" y="402">Phased (classic for v1, AVM later): retired for new work in October 2026</text>
-
-  <text class="lbl meta" x="20" y="455">FACTS AS OF 25 OCT 2026 · RE-VERIFY ON THE DAY YOU DECIDE</text>
+  <rect class="box" x="20" y="20" width="380" height="64"/>
+  <text class="h ink" x="36" y="57">Already running classic ALZ-Bicep?</text>
+  <line class="arrow" x1="400" y1="52" x2="467" y2="52"/>
+  <polygon class="head" points="467,47 477,52 467,57"/>
+  <text class="label meta" x="418" y="42">YES</text>
+  <rect class="out" x="477" y="20" width="263" height="110"/>
+  <text class="h ink" x="493" y="47">Assess and rehearse migration</text>
+  <text class="meta" x="493" y="70">Identifiers, policy continuity,</text>
+  <text class="meta" x="493" y="89">rollback and networking scope</text>
+  <text class="meta" x="493" y="113">Support endpoint: 16 Feb 2027</text>
+  <line class="arrow" x1="210" y1="84" x2="210" y2="144"/>
+  <polygon class="head" points="205,144 210,154 215,144"/>
+  <text class="label meta" x="220" y="120">NO</text>
+  <rect class="box" x="20" y="154" width="380" height="76"/>
+  <text class="h ink" x="36" y="184">Does supported AVM configuration</text>
+  <text class="h ink" x="36" y="205">meet your requirements?</text>
+  <line class="arrow" x1="400" y1="192" x2="467" y2="192"/>
+  <polygon class="head" points="467,187 477,192 467,197"/>
+  <text class="label meta" x="418" y="182">NO</text>
+  <rect class="out" x="477" y="154" width="263" height="110"/>
+  <text class="h ink" x="493" y="181">Document the unmet requirement</text>
+  <text class="meta" x="493" y="204">Consider bounded custom work;</text>
+  <text class="meta" x="493" y="223">accept orchestration and policy</text>
+  <text class="meta" x="493" y="242">maintenance explicitly.</text>
+  <line class="arrow" x1="210" y1="230" x2="210" y2="288"/>
+  <polygon class="head" points="205,288 210,298 215,288"/>
+  <text class="label meta" x="220" y="264">YES</text>
+  <rect class="win" x="20" y="298" width="380" height="80"/>
+  <text class="h acc" x="36" y="328">Start with the AVM accelerator</text>
+  <text class="ink" x="36" y="352">Name the upgrade and removal owner.</text>
+  <text class="meta" x="20" y="414">Owning a framework can be a product decision. Make that ownership explicit.</text>
+  <text class="meta" x="20" y="439">Classic-first for new work: require a documented exception and an exit plan.</text>
+  <text class="label meta" x="20" y="486">SOURCES REVIEWED 29 OCT 2026 · RE-CHECK BEFORE REUSING</text>
 </svg>

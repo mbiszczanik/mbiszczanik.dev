@@ -1,45 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" role="img" aria-labelledby="t d">
-  <title id="t">Classic ALZ-Bicep support timeline, February 2026 to February 2027</title>
-  <desc id="d">16 Feb 2026: classic starter module removed from the accelerator, AVM becomes the default. 12 Jun 2026: ADR-0001 written, phased path still defensible. 6 Oct 2026: AVM accelerator v2.4.0. 25 Oct 2026: re-check, phased path retired. 16 Feb 2027: ALZ-Bicep archived, support ends. Between the first and last date classic ALZ-Bicep gets bug, security and policy fixes only.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 280" role="img" aria-labelledby="t d">
+  <title id="t">Classic ALZ-Bicep support milestones</title>
+  <desc id="d">24 November 2025: accelerator release notes recommend AVM Bicep for new deployments. 16 February 2026: Classic starter removed from the accelerator. 29 October 2026: sources reviewed for this article. 16 February 2027: Classic support endpoint and repository archival. Removal from the accelerator is not the same as the end of support. Milestone spacing is schematic.</desc>
   <style>
-    .ink { fill: #14130f; } .meta { fill: #656056; } .acc { fill: #1d4ed8; }
-    .line { stroke: #14130f; } .lead { stroke: #656056; } .acc-s { stroke: #1d4ed8; }
-    .band { fill: #dde6f2; }
-    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 12px; }
-    .date { font-family: ui-monospace, Consolas, monospace; font-size: 11px; }
-    @media (prefers-color-scheme: dark) {
-      .ink { fill: #ffffff; } .meta { fill: #a6a6ab; } .acc { fill: #60a5fa; }
-      .line { stroke: #ffffff; } .lead { stroke: #85858c; } .acc-s { stroke: #60a5fa; }
-      .band { fill: #0d1426; }
-    }
+    .ink{fill:#14130f}.meta{fill:#656056}.acc{fill:#1d4ed8}.line{stroke:#14130f}.lead{stroke:#656056}.band{fill:#dde6f2}
+    text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:13px}.date{font-family:ui-monospace,Consolas,monospace;font-size:12px}
+    @media(prefers-color-scheme:dark){.ink{fill:#fff}.meta{fill:#a6a6ab}.acc{fill:#60a5fa}.line{stroke:#fff}.lead{stroke:#85858c}.band{fill:#0d1426}}
   </style>
-  <rect class="band" x="66" y="112" width="628" height="24"/>
-  <text class="meta" x="82" y="128">Classic: fixes only</text>
-  <line class="line" x1="40" y1="150" x2="730" y2="150" stroke-width="1.5"/>
-
-  <line class="lead" x1="66" y1="150" x2="66" y2="178" stroke-width="1"/>
-  <circle class="ink" cx="66" cy="150" r="5"/>
-  <text class="date ink" x="60" y="194">16 FEB 2026</text>
-  <text class="meta" x="60" y="211">Classic removed from the accelerator;</text>
-  <text class="meta" x="60" y="227">AVM platform landing zone is the default</text>
-
-  <line class="lead" x1="269" y1="150" x2="269" y2="84" stroke-width="1"/>
-  <circle class="ink" cx="269" cy="150" r="5"/>
-  <text class="date ink" x="269" y="52" text-anchor="middle">12 JUN 2026</text>
-  <text class="meta" x="269" y="69" text-anchor="middle">ADR-0001: phased path still defensible</text>
-
-  <line class="lead" x1="467" y1="150" x2="467" y2="178" stroke-width="1"/>
-  <circle class="ink" cx="467" cy="150" r="5"/>
-  <text class="date ink" x="467" y="194" text-anchor="middle">6 OCT 2026</text>
-  <text class="meta" x="467" y="211" text-anchor="middle">Accelerator v2.4.0</text>
-
-  <line class="acc-s" x1="500" y1="150" x2="500" y2="84" stroke-width="1"/>
-  <circle class="acc" cx="500" cy="150" r="6"/>
-  <text class="date acc" x="494" y="52">25 OCT 2026</text>
-  <text class="meta" x="494" y="69">Re-check: phased path retired</text>
-
-  <line class="lead" x1="694" y1="150" x2="694" y2="236" stroke-width="1"/>
-  <circle class="ink" cx="694" cy="150" r="5"/>
-  <text class="date ink" x="700" y="252" text-anchor="end">16 FEB 2027</text>
-  <text class="meta" x="700" y="269" text-anchor="end">ALZ-Bicep archived, support ends</text>
+  <rect class="band" x="250" y="118" width="450" height="28"/>
+  <text class="meta" x="268" y="137">Classic: bug, security and policy fixes</text>
+  <line class="line" x1="48" y1="158" x2="712" y2="158" stroke-width="1.5"/>
+  <circle class="ink" cx="64" cy="158" r="5"/>
+  <line class="lead" x1="64" y1="158" x2="64" y2="84"/>
+  <text class="date ink" x="28" y="40">24 NOV 2025</text>
+  <text class="meta" x="28" y="61">AVM recommended</text>
+  <text class="meta" x="28" y="79">for new deployments</text>
+  <circle class="ink" cx="250" cy="158" r="5"/>
+  <line class="lead" x1="250" y1="158" x2="250" y2="188"/>
+  <text class="date ink" x="190" y="209">16 FEB 2026</text>
+  <text class="meta" x="190" y="230">Classic starter removed</text>
+  <text class="meta" x="190" y="248">from the accelerator</text>
+  <circle class="acc" cx="500" cy="158" r="6"/>
+  <line class="lead" x1="500" y1="158" x2="500" y2="84"/>
+  <text class="date acc" x="437" y="40">29 OCT 2026</text>
+  <text class="meta" x="437" y="61">Source review</text>
+  <text class="meta" x="437" y="79">for this decision</text>
+  <circle class="ink" cx="700" cy="158" r="5"/>
+  <line class="lead" x1="700" y1="158" x2="700" y2="188"/>
+  <text class="date ink" x="730" y="209" text-anchor="end">16 FEB 2027</text>
+  <text class="meta" x="730" y="230" text-anchor="end">Support ends;</text>
+  <text class="meta" x="730" y="248" text-anchor="end">repository archived</text>
+  <text class="meta" x="28" y="274" font-size="11">Milestones, not a time scale. Deployed resources are not deleted by this support deadline.</text>
 </svg>
