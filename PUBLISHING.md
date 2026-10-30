@@ -4,6 +4,35 @@ This blog is the canonical source of truth. dev.to is a secondary channel
 for reach and feedback. SEO equity stays with the blog through canonical
 URLs.
 
+## Before merging a post
+
+Lessons from the posts so far. `npm run build` enforces the last one; the
+rest are checked by hand on the day of the merge.
+
+- When a post states a fact that can change (version, support date, module
+  status, count), the post shall name its primary source and the date it was
+  checked.
+- If that date is more than 14 days before `pubDate`, then the merge shall
+  wait until the check is run again.
+  The landing zone article's source decision record, written in June, was
+  wrong by October.
+- When a post states a count produced by a script or a pattern match, the
+  count shall be confirmed by a second method (list the items, or count
+  another way).
+  A module count came out 22 instead of 23 because the pattern skipped digits.
+- When a post gives the reader a command, the command shall be run on the
+  merge day and its output shall match what the post says it shows.
+- When a post includes a diagram, the diagram shall be rendered in light and
+  dark mode at the published width and inspected before the merge, and its
+  alt text shall state the conclusion, not only the shapes.
+  An overlapping label showed only in the rendered image, not in the SVG source.
+- When a post changes a conclusion of its source record (an ADR, a decision
+  log entry), the source shall be updated in the same week the post is
+  published.
+- If a post contains `<!--`, `TODO`, `FIXME` or `DRAFT` outside a code block,
+  then `npm run build` shall fail (`scripts/check-content-markers.mjs`).
+  HTML comments do not render but reach the published page source.
+
 ## Publishing a new post
 
 1. Run `npm run og` and commit the new images. It renders the post's
