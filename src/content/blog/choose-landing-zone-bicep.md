@@ -2,7 +2,7 @@
 title: "Which Azure landing zone implementation should you build on in Bicep?"
 description: "Choose a Bicep landing zone foundation by support exposure, supported customization and operating ownership, with the migration conditions that matter before committing."
 author: "Marcin Biszczanik"
-pubDate: "2026-10-29"
+pubDate: "2026-10-30"
 ogEyebrow: "Landing zones · Bicep"
 tags: ["azure", "bicep", "landing-zones", "azure-verified-modules", "architecture"]
 ---
@@ -15,7 +15,7 @@ That is the decision this article helps you make. Compare who owns the policy ba
 
 This revisits the framework in my public [ADR-0001](https://github.com/mbiszczanik/azure-architecture-decisions/blob/main/adr/0001-landing-zone-reference-implementation.md). Its June 2026 version already defaulted to AVM and left a conditional classic-first fallback for a hard deadline combined with unavailable components. I revised the record on 25 October 2026; the June reasoning stays in its [revision history](https://github.com/mbiszczanik/azure-architecture-decisions/blob/main/adr/0001-landing-zone-reference-implementation.md#revision-history). The recommendation below narrows that fallback for new work.
 
-**Source review: 29 October 2026.** Product status and support dates below refer to that check. The migration discussion describes published guidance, not a migration I have executed for this article.
+**Source review: 30 October 2026.** Product status and support dates below refer to that check. The migration discussion describes published guidance, not a migration I have executed for this article.
 
 ## What are the options?
 
@@ -30,7 +30,7 @@ They can serve the same broad purpose: a governed foundation for workloads. They
 
 ## What does the support timeline actually say?
 
-As checked on 29 October 2026, the [Classic ALZ-Bicep README](https://github.com/Azure/ALZ-Bicep) distinguishes removal from the accelerator from the end of repository support:
+As checked on 30 October 2026, the [Classic ALZ-Bicep README](https://github.com/Azure/ALZ-Bicep) distinguishes removal from the accelerator from the end of repository support:
 
 - The Classic starter was removed from the accelerator on **16 February 2026**.
 - Bug fixes, security patches and policy refreshes continue during the stated maintenance period.
@@ -42,7 +42,7 @@ The AVM recommendation is not new in October. The [accelerator release notes](ht
 
 <picture>
   <source media="(max-width: 600px)" srcset="/diagrams/choose-landing-zone-bicep/timeline-mobile.svg" />
-  <img src="/diagrams/choose-landing-zone-bicep/timeline.svg" alt="Classic ALZ-Bicep timeline: AVM Bicep recommended for new deployments in the accelerator release notes on 24 November 2025; Classic starter removed on 16 February 2026; source review on 29 October 2026; Classic repository support ends and archival follows on 16 February 2027. Removal from the accelerator is distinct from the maintenance endpoint." />
+  <img src="/diagrams/choose-landing-zone-bicep/timeline.svg" alt="Classic ALZ-Bicep timeline: AVM Bicep recommended for new deployments in the accelerator release notes on 24 November 2025; Classic starter removed on 16 February 2026; source review on 30 October 2026; Classic repository support ends and archival follows on 16 February 2027. Removal from the accelerator is distinct from the maintenance endpoint." />
 </picture>
 
 For new long-lived work, my recommendation is to avoid adding exposure to that maintenance endpoint. Familiarity can reduce initial learning, but it does not remove the migration and support responsibility. If an exception is proposed, require the concrete blocker in AVM, an owner for the exception and a credible exit plan. "We will migrate later" is not that plan.
@@ -58,13 +58,13 @@ The [official Bicep overview](https://azure.github.io/Azure-Landing-Zones/bicep/
 
 Its modularity gives your team a way to evaluate component upgrades separately. That does not make upgrades independent of their dependencies. Pin the versions you accept, read the relevant release notes and validate the resulting platform together.
 
-The operating model also matters. As checked on 29 October 2026, the official overview documents deployment through **Azure Deployment Stacks**, with a configuration that removes managed resources when they leave the template. It describes preview through standard deployment what-if and warns that the preview may not fully reflect stack deletions. This is documented pipeline behavior, not a claim that every script or deployment path uses the same command.
+The operating model also matters. As checked on 30 October 2026, the official overview documents deployment through **Azure Deployment Stacks**, with a configuration that removes managed resources when they leave the template. It describes preview through standard deployment what-if and warns that the preview may not fully reflect stack deletions. This is documented pipeline behavior, not a claim that every script or deployment path uses the same command.
 
 Before adopting it, make someone responsible for reviewing removals, approving upgrades and investigating partial failures. Choosing the accelerator also means choosing an operating model your team has to understand.
 
 ## What does a 0.x module version mean?
 
-Do not use the version number as a shortcut for readiness. On 29 October 2026 I counted the module references in the templates of accelerator release v2.4.0 (6 October 2026): 23 distinct AVM modules, every one pinned to a `0.x` version. The [AVM FAQ](https://azure.github.io/Azure-Verified-Modules/resources/faq/), checked on 29 October 2026, allows production use before version 1.0. It also says that the full semantic-versioning commitment applies from 1.0: unavoidable breaking changes then require a major version increment.
+Do not use the version number as a shortcut for readiness. On 30 October 2026 I counted the module references in the templates of accelerator release v2.4.0 (6 October 2026): 23 distinct AVM modules, every one pinned to a `0.x` version. The [AVM FAQ](https://azure.github.io/Azure-Verified-Modules/resources/faq/), checked on 30 October 2026, allows production use before version 1.0. It also says that the full semantic-versioning commitment applies from 1.0: unavoidable breaking changes then require a major version increment.
 
 For a pre-1.0 dependency, assess each upgrade rather than assuming a minor bump preserves its interface. My practical rule is to pin versions, read changelogs and validate changes before promoting them. An available module is not a promise that every version is appropriate for your requirements.
 
@@ -84,7 +84,7 @@ The policy layer deserves its own owner. Reusing resource modules does not autom
 
 For new work, it is an exception I would ask the team to justify, rather than a default response to a deadline. It adds a second implementation and a migration whose budget competes with the next delivery. The support endpoint is a constraint on that plan, not evidence that a migration will happen automatically.
 
-If you already run Classic, migration planning is a different decision from choosing a greenfield foundation. Use the [migration guide](https://azure.github.io/Azure-Landing-Zones/bicep/migration/), checked on 29 October 2026, but read its conditions before promising an in-place transition:
+If you already run Classic, migration planning is a different decision from choosing a greenfield foundation. Use the [migration guide](https://azure.github.io/Azure-Landing-Zones/bicep/migration/), checked on 30 October 2026, but read its conditions before promising an in-place transition:
 
 - Existing management-group and resource identifiers need to align with the new configuration to avoid duplicates.
 - Policy-definition changes can fail during an update even when what-if appears acceptable. The guide describes staged policy removal and recreation as a mitigation.
@@ -101,7 +101,7 @@ Those conditions make rehearsal, policy continuity and rollback ownership part o
 
 <div style="overflow-x: auto;" role="region" aria-label="Landing zone decision comparison" tabindex="0">
 
-| Your situation, as of 29 October 2026 | My recommendation | First decision to make |
+| Your situation, as of 30 October 2026 | My recommendation | First decision to make |
 | --- | --- | --- |
 | New platform; supported configuration meets the requirements | AVM platform landing zone | Who owns version upgrades and stack removals? |
 | New platform; hierarchy or settings differ from defaults | Test supported customization first | Which exact requirement, if any, remains unmet? |

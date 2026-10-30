@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 280" role="img" aria-labelledby="t d">
   <title id="t">Classic ALZ-Bicep support milestones</title>
-  <desc id="d">24 November 2025: accelerator release notes recommend AVM Bicep for new deployments. 16 February 2026: Classic starter removed from the accelerator. 29 October 2026: sources reviewed for this article. 16 February 2027: Classic support endpoint and repository archival. Removal from the accelerator is not the same as the end of support. Milestone spacing is schematic.</desc>
+  <desc id="d">24 November 2025: accelerator release notes recommend AVM Bicep for new deployments. 16 February 2026: Classic starter removed from the accelerator. 30 October 2026: sources reviewed for this article. 16 February 2027: Classic support endpoint and repository archival. Removal from the accelerator is not the same as the end of support. Milestone spacing is schematic.</desc>
   <style>
     .ink{fill:#14130f}.meta{fill:#656056}.acc{fill:#1d4ed8}.line{stroke:#14130f}.lead{stroke:#656056}.band{fill:#dde6f2}
     text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:13px}.date{font-family:ui-monospace,Consolas,monospace;font-size:12px}
@@ -21,7 +21,7 @@
   <text class="meta" x="190" y="248">from the accelerator</text>
   <circle class="acc" cx="500" cy="158" r="6"/>
   <line class="lead" x1="500" y1="158" x2="500" y2="84"/>
-  <text class="date acc" x="437" y="40">29 OCT 2026</text>
+  <text class="date acc" x="437" y="40">30 OCT 2026</text>
   <text class="meta" x="437" y="61">Source review</text>
   <text class="meta" x="437" y="79">for this decision</text>
   <circle class="ink" cx="700" cy="158" r="5"/>
