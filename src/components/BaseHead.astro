@@ -78,12 +78,12 @@ const imageURL = new URL(image, Astro.site).href;
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageURL} />
 
-<!-- TODO(author): Cloudflare Web Analytics. In the Cloudflare dashboard open
+{/* TODO(author): Cloudflare Web Analytics. In the Cloudflare dashboard open
      Analytics > Web Analytics, add this site, copy the beacon token, then
-     replace YOUR_CF_BEACON_TOKEN below and uncomment the script tag. -->
-<!--
+     replace YOUR_CF_BEACON_TOKEN below and uncomment the script tag.
+     An Astro comment, unlike an HTML one, stays out of the published page.
 <script
   defer
   src="https://static.cloudflareinsights.com/beacon.min.js"
   data-cf-beacon='{"token": "YOUR_CF_BEACON_TOKEN"}'></script>
--->
+*/}
