@@ -1,0 +1,21 @@
+{
+  "licenses": {
+    "MIT": "Code and configuration. Text in LICENSE.",
+    "CC-BY-4.0": "Written content and its images. Text in LICENSE-CONTENT.",
+    "OFL-1.1": "Third-party fonts, excluded from both licenses. Each keeps its upstream SIL Open Font License."
+  },
+  "rules": [
+    { "license": "CC-BY-4.0", "paths": ["src/content/**", "src/pages/*.md", "public/diagrams/**", "public/og/**"] },
+    { "license": "OFL-1.1", "paths": ["src/assets/fonts/**"] },
+    {
+      "license": "MIT",
+      "paths": [
+        ".gitignore", ".nvmrc", ".vscode/**",
+        "*.md", "*.json", "*.jsonc", "*.mjs", "LICENSE", "LICENSE-CONTENT",
+        "scripts/**", "src/*.ts", "src/components/**", "src/layouts/**", "src/styles/**",
+        "src/pages/**/*.astro", "src/pages/rss.xml.js",
+        "public/favicon.*", "public/og-default.png", "public/robots.txt"
+      ]
+    }
+  ]
+}

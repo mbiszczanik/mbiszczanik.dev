@@ -7,8 +7,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/check-content-markers.mjs && astro build",
+    "build": "node scripts/check-content-markers.mjs && node scripts/check-licenses.mjs && astro build",
     "check:markers": "node scripts/check-content-markers.mjs",
+    "check:licenses": "node scripts/check-licenses.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "verify:seo": "node scripts/verify-seo.mjs",

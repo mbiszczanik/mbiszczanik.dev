@@ -12,6 +12,7 @@ focus: the decisions behind Azure platform work.
 | `npm run dev` | Local dev server at `localhost:4321` |
 | `npm run build` | Check posts for internal markers, then build to `./dist/` |
 | `npm run check:markers` | Fail on `<!--`, `TODO`, `FIXME` or `DRAFT` in posts outside code blocks, and on those words inside HTML comments in `.astro` files |
+| `npm run check:licenses` | Fail when a tracked file has no license mapping in `licenses.json` (also runs in `npm run build`) |
 | `npm run preview` | Preview the build locally |
 | `npm run verify:seo` | Check SEO essentials in the built output |
 | `npm run og` | Regenerate `public/og-default.png` and `public/favicon.ico` (needs Chrome or Edge; override with `CHROME_PATH`) |
@@ -79,3 +80,11 @@ Also review `src/pages/privacy.md` before go-live.
 
 See [PUBLISHING.md](PUBLISHING.md) for the dev.to canonical cross-post
 workflow.
+
+## License
+
+Content (posts, pages, diagrams, cover images) is CC BY 4.0, see `LICENSE-CONTENT`.
+Code and configuration are MIT, see `LICENSE`. `licenses.json` maps every tracked path
+to its license; the Archivo and JetBrains Mono fonts in `src/assets/fonts` are third-party
+(SIL Open Font License) and covered by neither. Quoted third-party text inside a post keeps
+its own terms.
