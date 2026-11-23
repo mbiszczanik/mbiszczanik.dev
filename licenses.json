@@ -10,7 +10,7 @@
     {
       "license": "MIT",
       "paths": [
-        ".gitignore", ".nvmrc", ".vscode/**",
+        ".gitignore", ".nvmrc", ".vscode/**", "mise.toml",
         "*.md", "*.json", "*.jsonc", "*.mjs", "LICENSE", "LICENSE-CONTENT",
         "scripts/**", "src/*.ts", "src/components/**", "src/layouts/**", "src/styles/**",
         "src/pages/**/*.astro", "src/pages/rss.xml.js",
