@@ -2,8 +2,8 @@
 node = "22"
 
 [tasks."check:fast"]
-description = "Seconds: fail on internal markers in posts and templates. Offline, read-only."
-run = "node scripts/check-content-markers.mjs"
+description = "Seconds: fail on internal markers in posts and templates, and on files without a license mapping. Offline, read-only."
+run = ["node scripts/check-content-markers.mjs", "node scripts/check-licenses.mjs"]
 
 [tasks.check]
 description = "Offline lane: markers, production build, SEO essentials in the built output."
